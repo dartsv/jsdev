@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Namespace="ApplicationData" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <Association Name="StaffingRequirement_Project">
+    <End Role="Project" Type="ApplicationData.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StaffingRequirement" Type="ApplicationData.StaffingRequirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffingRequirement">
+        <PropertyRef Name="StaffingRequirement_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeAssignment_Project">
+    <End Role="Project" Type="ApplicationData.Project" Multiplicity="1" />
+    <End Role="EmployeeAssignment" Type="ApplicationData.EmployeeAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeAssignment">
+        <PropertyRef Name="EmployeeAssignment_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeAssignment_Employee">
+    <End Role="Employee" Type="ApplicationData.Employee" Multiplicity="1" />
+    <End Role="EmployeeAssignment" Type="ApplicationData.EmployeeAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeAssignment">
+        <PropertyRef Name="EmployeeAssignment_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Employee">
+    <End Role="Employee" Type="ApplicationData.Employee" Multiplicity="0..1" />
+    <End Role="Project" Type="ApplicationData.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Project_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Employee1">
+    <End Role="Employee" Type="ApplicationData.Employee" Multiplicity="0..1" />
+    <End Role="Project" Type="ApplicationData.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Project_Employee1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeForecast_Project">
+    <End Role="Project" Type="ApplicationData.Project" Multiplicity="1" />
+    <End Role="TimeForecast" Type="ApplicationData.TimeForecast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeForecast">
+        <PropertyRef Name="TimeForecast_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeForecast_Employee">
+    <End Role="Employee" Type="ApplicationData.Employee" Multiplicity="1" />
+    <End Role="TimeForecast" Type="ApplicationData.TimeForecast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeForecast">
+        <PropertyRef Name="TimeForecast_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="40" ConcurrencyMode="Fixed" />
+    <Property Name="Client" Type="String" Nullable="false" MaxLength="40" ConcurrencyMode="Fixed" />
+    <Property Name="Phase" Type="String" Nullable="false" MaxLength="10" ConcurrencyMode="Fixed" />
+    <Property Name="ProjectStatus" Type="Double" Nullable="false" ConcurrencyMode="None" />
+    <Property Name="StaffingStatus" Type="Double" Nullable="false" ConcurrencyMode="None" />
+    <Property Name="FollowOn" Type="String" MaxLength="255" ConcurrencyMode="Fixed" />
+    <Property Name="Notes" Type="String" MaxLength="255" ConcurrencyMode="Fixed" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="ProjectedEndDate" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Closed" Type="Boolean" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Chargeable" Type="Boolean" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Project_Employee" Type="Int32" ConcurrencyMode="Fixed" />
+    <Property Name="Project_Employee1" Type="Int32" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="StaffingRequirements" Relationship="ApplicationData.StaffingRequirement_Project" ToRole="StaffingRequirement" FromRole="Project" />
+    <NavigationProperty Name="EmployeeAssignment" Relationship="ApplicationData.EmployeeAssignment_Project" ToRole="EmployeeAssignment" FromRole="Project" />
+    <NavigationProperty Name="Director" Relationship="ApplicationData.Project_Employee" ToRole="Employee" FromRole="Project" />
+    <NavigationProperty Name="Manager" Relationship="ApplicationData.Project_Employee1" ToRole="Employee" FromRole="Project" />
+    <NavigationProperty Name="TimeForecasts" Relationship="ApplicationData.TimeForecast_Project" ToRole="TimeForecast" FromRole="Project" />
+  </EntityType>
+  <EntityType Name="StaffingRequirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Level" Type="Int16" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Skill" Type="Int16" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Industry" Type="Int16" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="FTEs" Type="Decimal" Nullable="false" Precision="18" Scale="2" ConcurrencyMode="Fixed" />
+    <Property Name="DateRequired" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="StaffingRequirement_Project" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Project" Relationship="ApplicationData.StaffingRequirement_Project" ToRole="Project" FromRole="StaffingRequirement" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="25" ConcurrencyMode="Fixed" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" ConcurrencyMode="Fixed" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" ConcurrencyMode="Fixed" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="20" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="EmployeeAssignments" Relationship="ApplicationData.EmployeeAssignment_Employee" ToRole="EmployeeAssignment" FromRole="Employee" />
+    <NavigationProperty Name="Projects" Relationship="ApplicationData.Project_Employee" ToRole="Project" FromRole="Employee" />
+    <NavigationProperty Name="Project" Relationship="ApplicationData.Project_Employee1" ToRole="Project" FromRole="Employee" />
+    <NavigationProperty Name="TimeForecasts" Relationship="ApplicationData.TimeForecast_Employee" ToRole="TimeForecast" FromRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmployeeAssignment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Percent" Type="Decimal" Nullable="false" Precision="18" Scale="0" ConcurrencyMode="Fixed" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="EmployeeAssignment_Project" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="EmployeeAssignment_Employee" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Projects" Relationship="ApplicationData.EmployeeAssignment_Project" ToRole="Project" FromRole="EmployeeAssignment" />
+    <NavigationProperty Name="Employee" Relationship="ApplicationData.EmployeeAssignment_Employee" ToRole="Employee" FromRole="EmployeeAssignment" />
+  </EntityType>
+  <EntityType Name="TimeForecast">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Percent" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Chargeable" Type="Boolean" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="TimeForecast_Project" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="TimeForecast_Employee" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Project1" Relationship="ApplicationData.TimeForecast_Project" ToRole="Project" FromRole="TimeForecast" />
+    <NavigationProperty Name="Employee" Relationship="ApplicationData.TimeForecast_Employee" ToRole="Employee" FromRole="TimeForecast" />
+  </EntityType>
+  <EntityType Name="ForecastException">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Exception" Type="String" Nullable="false" MaxLength="255" ConcurrencyMode="Fixed" />
+  </EntityType>
+  <EntityContainer Name="ApplicationDataObjectContext">
+    <EntitySet Name="Projects" EntityType="ApplicationData.Project" />
+    <EntitySet Name="StaffingRequirements" EntityType="ApplicationData.StaffingRequirement" />
+    <EntitySet Name="Employees" EntityType="ApplicationData.Employee" />
+    <EntitySet Name="EmployeeAssignments" EntityType="ApplicationData.EmployeeAssignment" />
+    <EntitySet Name="TimeForecasts" EntityType="ApplicationData.TimeForecast" />
+    <EntitySet Name="ForecastExceptions" EntityType="ApplicationData.ForecastException" />
+    <AssociationSet Name="StaffingRequirement_Project" Association="ApplicationData.StaffingRequirement_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="StaffingRequirement" EntitySet="StaffingRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeAssignment_Project" Association="ApplicationData.EmployeeAssignment_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="EmployeeAssignment" EntitySet="EmployeeAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeAssignment_Employee" Association="ApplicationData.EmployeeAssignment_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeAssignment" EntitySet="EmployeeAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Employee" Association="ApplicationData.Project_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Employee1" Association="ApplicationData.Project_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="TimeForecast_Project" Association="ApplicationData.TimeForecast_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="TimeForecast" EntitySet="TimeForecasts" />
+    </AssociationSet>
+    <AssociationSet Name="TimeForecast_Employee" Association="ApplicationData.TimeForecast_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="TimeForecast" EntitySet="TimeForecasts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

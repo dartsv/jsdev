@@ -1,0 +1,58 @@
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\packages\EPPlus.3.1.3.3\lib\net35\EPPlus.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\ExcelImporter\Server\Reference\ExcelImporter.Common.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\ExcelImporter\Server\Reference\ExcelImporter.Server.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\FilterControl\Server\Reference\FilterControl.Common.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\FilterControl\Server\Reference\FilterControl.Server.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.Data.Edm.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.Data.OData.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.Data.Services.Client.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.Data.Services.dll
+C:\Windows\assembly\GAC_MSIL\Microsoft.IdentityModel\3.5.0.0__31bf3856ad364e35\Microsoft.IdentityModel.dll
+C:\Windows\Microsoft.Net\assembly\GAC_MSIL\Microsoft.IdentityModel.Extensions\v4.0_2.0.0.0__69c3241e6f0468ca\Microsoft.IdentityModel.Extensions.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.LightSwitch.AppBridge.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.LightSwitch.Base.Server.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Client\Microsoft.LightSwitch.CodeMarker.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Client\Microsoft.LightSwitch.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Client\Microsoft.LightSwitch.ExportProvider.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\Microsoft.LightSwitch.Extensions\ServerGen\Reference\Microsoft.LightSwitch.Extensions.Server.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.LightSwitch.ManifestService.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.LightSwitch.Model.Xaml.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.LightSwitch.Server.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.LightSwitch.Server.Host.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\Microsoft.LightSwitch.Server.Internal.dll
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\Microsoft.Web.Infrastructure.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\OfficeIntegration\ServerGen\Reference\OfficeIntegration.Common.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\OfficeIntegration\Server\Reference\OfficeIntegration.Server.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\PixataCustomControls\Server\Reference\PixataCustomControls.Common.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus\_Pvt_Extensions\PixataCustomControls\Server\Reference\PixataCustomControls.Server.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\ProjectStatus_RIA_Service.dll
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Net.Http.dll
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Net.Http.Formatting.dll
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Net.Http.WebRequest.dll
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.EntityFramework.dll
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.dll
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.OData.dll
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Server.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\System.ServiceModel.PollingDuplex.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\\Server\System.Spatial.dll
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Http.dll
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Http.WebHost.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\CommonUtilities.dll
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\Server\Microsoft.WindowsAzure.ServiceRuntime.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\ProjectStatus_RIA_Service.pdb
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\packages\EPPlus.3.1.3.3\lib\net35\EPPlus.xml
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\Microsoft.Web.Infrastructure.xml
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.xml
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Net.Http.xml
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Net.Http.Formatting.xml
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Net.Http.WebRequest.xml
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\v1.0\Libraries\Server\System.ServiceModel.DomainServices.EntityFramework.xml
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.xml
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.OData.xml
+C:\Program Files (x86)\Microsoft SDKs\RIA Services\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Server.xml
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Http.xml
+C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Http.WebHost.xml
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\Client\Microsoft.LightSwitch.xml
+C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v3.0\Server\Microsoft.LightSwitch.Server.xml
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\CommonUtilities.pdb

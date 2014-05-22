@@ -1,0 +1,61 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+    xmlns:local="clr-namespace:CustomControls"
+   xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="CustomControls.CustomCharts.ProjectFeaturesChart"
+   >
+    <UserControl.Resources>
+        <ResourceDictionary Source="ChartResources.xaml"/>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <toolkit:Chart x:Name="FeaturesChart" x:FieldModifier="public" 
+			Title="Features DOD Progress" BorderThickness="0" Padding="10,0,0,0" TitleStyle="{StaticResource LighterTitleStyle}" Grid.RowSpan="2">
+
+            <toolkit:BarSeries x:Name="BarSeries" 
+				Title="Count"
+				ItemsSource="{Binding Screen.FeatureChartData}"               
+                               
+				IsSelectionEnabled="False" 
+                IndependentValueBinding="{Binding FeatureStatus}"
+				DependentValueBinding="{Binding FeatureCount}" AnimationSequence="LastToFirst" UseLayoutRounding="True" FontSize="9">
+
+                <toolkit:BarSeries.IndependentAxis>
+                    <toolkit:CategoryAxis Orientation="Y" FontSize="9"/>
+                </toolkit:BarSeries.IndependentAxis>
+                <toolkit:BarSeries.DependentRangeAxis>
+                    <toolkit:LinearAxis Minimum="0" Padding="0,0" Interval="1" Orientation="X" FontSize="9"/>
+                </toolkit:BarSeries.DependentRangeAxis>
+                <toolkit:BarSeries.DataPointStyle>
+                    <Style TargetType="toolkit:BarDataPoint">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="toolkit:BarDataPoint">
+                                    <Border
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                        <Grid Background="{Binding FeatureStatus, Converter={StaticResource FeatureStatusToColorConverter}}">
+                                            <Rectangle>
+                                                <Rectangle.Fill>
+                                                    <LinearGradientBrush>
+                                                        <GradientStop Color="#00ffffff" Offset="0"/>
+                                                        <GradientStop Color="#00ffffff" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <Border BorderBrush="#00ffffff" BorderThickness="1">
+                                                <Border BorderBrush="#00ffffff" BorderThickness="1"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </toolkit:BarSeries.DataPointStyle>
+            </toolkit:BarSeries>
+        </toolkit:Chart>
+    </Grid>
+</UserControl>

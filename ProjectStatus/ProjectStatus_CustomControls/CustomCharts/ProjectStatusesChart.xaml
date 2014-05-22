@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="LightSwitchApplication.CustomControls.ProjectStatusesChart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+    
+    <UserControl.Resources>
+        <ResourceDictionary Source="ChartResources.xaml"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <toolkit:Chart x:Name="ProjectsChart" x:FieldModifier="public" 
+                       Title="Project Status" BorderThickness="0" 
+                       Palette="{StaticResource DataPointPalette}"
+                       >
+            <toolkit:Chart.Series>
+
+                <toolkit:PieSeries Name="PieSeries" 
+		        ItemsSource="{Binding Screen.ProjectChartData}" 
+		        IsSelectionEnabled="False"                           
+              	IndependentValuePath="ProjectStatus" 
+		        DependentValuePath="ProjectCount"/>
+            </toolkit:Chart.Series>
+        </toolkit:Chart>
+    </Grid>
+</UserControl>

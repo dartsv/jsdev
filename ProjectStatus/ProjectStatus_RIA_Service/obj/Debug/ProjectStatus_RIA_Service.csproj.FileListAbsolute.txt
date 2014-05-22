@@ -1,0 +1,7 @@
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\ProjectStatus_RIA_Service.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\ProjectStatus_RIA_Service.pdb
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\CommonUtilities.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Debug\CommonUtilities.pdb
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\obj\Debug\ProjectStatus_RIA_Service.csprojResolveAssemblyReference.cache
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\obj\Debug\ProjectStatus_RIA_Service.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\obj\Debug\ProjectStatus_RIA_Service.pdb

@@ -1,0 +1,36 @@
+﻿
+<Configuration>
+  <Manifests>
+    <Manifest>Microsoft.LightSwitch.Base.Client.Manifest.xml</Manifest>
+    <Manifest>Microsoft.LightSwitch.Client.Internal.Manifest.xml</Manifest>
+    <Manifest>Microsoft.LightSwitch.Model.Xaml.Client.Manifest.xml</Manifest>
+  <Manifest>Microsoft.LightSwitch.RuntimeEditor.Internal.Manifest.xml</Manifest><Manifest>Microsoft.VisualStudio.Debugger.Runtime.Dll.Manifest.xml</Manifest></Manifests>
+  <SubsystemPackages>
+    <SubsystemPackage>ModelLoader</SubsystemPackage>
+    <SubsystemPackage>RuntimeExtensionLoader</SubsystemPackage>
+    <SubsystemPackage>PresentationRuntimeLoader</SubsystemPackage>
+    <SubsystemPackage>ReportingLoader</SubsystemPackage>
+    <SubsystemPackage>RulesLoader</SubsystemPackage>
+    <SubsystemPackage>RuntimeServicesLoader</SubsystemPackage>
+    <SubsystemPackage>RuntimeShellLoader</SubsystemPackage>
+    <SubsystemPackage>ThemingRuntimeLoader</SubsystemPackage>
+    <SubsystemPackage>UtilitiesLoader</SubsystemPackage>
+    <SubsystemPackage>BaseServicesLoader</SubsystemPackage>
+    <SubsystemPackage>DiagnosticsLoader</SubsystemPackage>
+    <SubsystemPackage>RuntimeUserCodeLoader</SubsystemPackage>
+  <SubsystemPackage>RuntimeEditLoader</SubsystemPackage><SubsystemPackage>AppBridgeLoader</SubsystemPackage></SubsystemPackages>
+  <UserCodeAssemblies><UserCodeAssembly>ProjectStatus.Client, Version=1.0.1016.0, Culture=neutral, PublicKeyToken=null</UserCodeAssembly></UserCodeAssemblies>
+  <ExtensionAssemblies>
+    <ExtensionAssembly>Microsoft.LightSwitch.SDKProxy, Version=10.0.11.3, Culture=neutral, PublicKeyToken=31bf3856ad364e35</ExtensionAssembly>
+    <ExtensionAssembly>Microsoft.LightSwitch.Cosmopolitan.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
+    <ExtensionAssembly>Microsoft.LightSwitch.Extensions.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
+    <ExtensionAssembly>OfficeIntegration.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>OfficeIntegration.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>FilterControl.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>FilterControl.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>PixataCustomControls.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>PixataCustomControls.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>ExcelImporter.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+    <ExtensionAssembly>ExcelImporter.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly>
+  <ExtensionAssembly>ExcelImporter.Client.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly><ExtensionAssembly>FilterControl.Client.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly><ExtensionAssembly>Microsoft.LightSwitch.Extensions.Design.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</ExtensionAssembly><ExtensionAssembly>OfficeIntegration.Client.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly><ExtensionAssembly>PixataCustomControls.Client.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ExtensionAssembly></ExtensionAssemblies>
+<ApplicationCulture>en-US</ApplicationCulture><SupportedCultures>en-US</SupportedCultures><ManifestTimeStamp>130451768864396961</ManifestTimeStamp><ApplicationName>Project Management Portal</ApplicationName><Version>1.0.1016.0</Version><RootProjectGuid>d7b27888-87e5-4bbf-af13-fa8c385d210f</RootProjectGuid></Configuration>

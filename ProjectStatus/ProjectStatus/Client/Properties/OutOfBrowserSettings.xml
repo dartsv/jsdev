@@ -1,0 +1,12 @@
+﻿<OutOfBrowserSettings ShortName="Project Management Portal" EnableGPUAcceleration="False" ShowInstallMenuItem="False">
+  <OutOfBrowserSettings.Blurb>Project Management Portal</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="Project Management Portal" Top="0" Left="0" WindowStartupLocation="Manual" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.SecuritySettings>
+    <SecuritySettings ElevatedPermissions="Required" />
+  </OutOfBrowserSettings.SecuritySettings>
+  <OutOfBrowserSettings.Icons>
+    <Icon Size="32,32">Resources/calendar_multiweek.png</Icon>
+  </OutOfBrowserSettings.Icons>
+</OutOfBrowserSettings>

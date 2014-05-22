@@ -1,0 +1,185 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
+    xmlns:local="clr-namespace:CustomControls.Converters"
+    x:Name="ResourceDictionary">
+    
+    <Style x:Key="LighterTitleStyle" TargetType="toolkit:Title">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    
+    <local:GeometryToNumberConverter x:Name="GeometryToNumberConverter" />
+    <local:FeatureStatusToColorConverter x:Name="FeatureStatusToColorConverter" />
+    <local:IncidentStatusToColorConverter x:Name="IncidentStatusToColorConverter" />
+    
+    <DropShadowEffect Color="Black" x:Key="dropShadow" BlurRadius="25" Direction="315" ShadowDepth="25"/>
+    
+    <Style x:Key="LabelDataPointStyle" TargetType="toolkit:PieDataPoint">
+        <Setter Property="Background" Value="Orange"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="RatioStringFormat" Value="{}{0:p2}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="toolkit:PieDataPoint">
+                    <Grid
+                    x:Name="Root"
+                    Opacity="0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="MouseOverHighlight"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0.6"
+                                        Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Unselected"/>
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="SelectionHighlight"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0.6"
+                                        Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="RevealStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.5"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Shown">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="Root"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="1"
+                                        Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Hidden">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                        Storyboard.TargetName="Root"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0"
+                                        Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Path
+                        x:Name="Slice"
+                        Data="{TemplateBinding Geometry}"
+                        Fill="{TemplateBinding Background}"
+                        Stroke="{TemplateBinding BorderBrush}"
+                        StrokeMiterLimit="1">
+                            <ToolTipService.ToolTip>
+                                <StackPanel>
+                                    <ContentControl Foreground="White" Content="{TemplateBinding FormattedDependentValue}"/>
+                                    <ContentControl Foreground="White" Content="{TemplateBinding FormattedRatio}"/>
+                                </StackPanel>
+                            </ToolTipService.ToolTip>
+                        </Path>
+                        <Path
+                        x:Name="SelectionHighlight"
+                        Data="{TemplateBinding GeometrySelection}"
+                        Fill="Red"
+                        StrokeMiterLimit="1"
+                        IsHitTestVisible="False"
+                        Opacity="0"/>
+                        <Path
+                        x:Name="MouseOverHighlight"
+                        Data="{TemplateBinding GeometryHighlight}"
+                        Fill="White"
+                        StrokeMiterLimit="1"
+                        IsHitTestVisible="False"
+                        Opacity="0"/>
+                        <Canvas IsHitTestVisible="False">
+                                <TextBlock Canvas.Left="{Binding Geometry, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GeometryToNumberConverter}, ConverterParameter=Left}"
+                                       Canvas.Top="{Binding Geometry, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GeometryToNumberConverter}, ConverterParameter=Top}"
+                                           Foreground="White" Text="{TemplateBinding FormattedDependentValue}" IsHitTestVisible="False">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect
+                                      Direction="330"
+                                      Color="Black"
+                                      Opacity="0.8"
+                                       ShadowDepth="1"
+                                     BlurRadius="0.1"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </Canvas>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <toolkit:ResourceDictionaryCollection x:Key="DataPointPalette">
+        <!-- Light Green -->
+        <ResourceDictionary>
+            <RadialGradientBrush x:Key="Background" GradientOrigin="-0.1,-0.1" Center="0.075,0.015" RadiusX="1.05" RadiusY="0.9">
+                <GradientStop Color="#FFB8B8B8" />
+                <GradientStop Color="#FF5F7143" Offset="1" />
+            </RadialGradientBrush>
+            <Style x:Key="DataPointStyle" TargetType="toolkit:PieDataPoint" BasedOn="{StaticResource LabelDataPointStyle}">
+                <Setter Property="Background" Value="{StaticResource Background}" />
+            </Style>
+            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                <Setter Property="Stroke" Value="{StaticResource Background}" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="StrokeMiterLimit" Value="1" />
+                <Setter Property="Fill" Value="{StaticResource Background}" />
+            </Style>
+        </ResourceDictionary>
+        <!-- Yellow -->
+        <ResourceDictionary>
+            <RadialGradientBrush x:Key="Background" GradientOrigin="-0.1,-0.1" Center="0.075,0.015" RadiusX="1.05" RadiusY="0.9">
+                <GradientStop Color="#FFFDE79C" />
+                <GradientStop Color="#FFF6BC0C" Offset="1" />
+            </RadialGradientBrush>
+            <Style x:Key="DataPointStyle" TargetType="toolkit:PieDataPoint" BasedOn="{StaticResource LabelDataPointStyle}">
+                <Setter Property="Background" Value="{StaticResource Background}" />
+            </Style>
+            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                <Setter Property="Stroke" Value="{StaticResource Background}" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="StrokeMiterLimit" Value="1" />
+                <Setter Property="Fill" Value="{StaticResource Background}" />
+            </Style>
+        </ResourceDictionary>
+        <!-- Red -->
+        <ResourceDictionary>
+            <RadialGradientBrush x:Key="Background" GradientOrigin="-0.1,-0.1" Center="0.075,0.015" RadiusX="1.05" RadiusY="0.9">
+                <GradientStop Color="#FFFBB7B5" />
+                <GradientStop Color="#FF702828" Offset="1" />
+            </RadialGradientBrush>
+            <Style x:Key="DataPointStyle" TargetType="toolkit:PieDataPoint" BasedOn="{StaticResource LabelDataPointStyle}">
+                <Setter Property="Background" Value="{StaticResource Background}" />
+            </Style>
+            <Style x:Key="DataShapeStyle" TargetType="Shape">
+                <Setter Property="Stroke" Value="{StaticResource Background}" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="StrokeMiterLimit" Value="1" />
+                <Setter Property="Fill" Value="{StaticResource Background}" />
+            </Style>
+        </ResourceDictionary>
+    </toolkit:ResourceDictionaryCollection>
+
+</ResourceDictionary>

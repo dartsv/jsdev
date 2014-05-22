@@ -1,0 +1,2096 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="60" />
+    <Property Name="Chargeable" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Phase" Type="Edm.String" Nullable="false" MaxLength="10" />
+    <Property Name="ProjectStatus" Type="Edm.Double" Nullable="false" />
+    <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="BookedEndDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="ForecastEndDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="StaffingStatus" Type="Edm.Double" Nullable="false" />
+    <Property Name="FollowOn" Type="Edm.String" MaxLength="255" />
+    <Property Name="Notes" Type="Edm.String" MaxLength="255" />
+    <Property Name="SharepointURL" Type="Edm.String" MaxLength="255" />
+    <Property Name="Planned" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="Inactive" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="ForecastException" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="IsDOD" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="IsDODOnly" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="Project_Employee" Type="Edm.Int32" />
+    <Property Name="Project_Employee1" Type="Edm.Int32" />
+    <Property Name="Client_Project1" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="LightSwitchApplication.Client_Project" ToRole="Client" FromRole="Project" />
+    <NavigationProperty Name="Director" Relationship="LightSwitchApplication.Project_Employee" ToRole="Employee" FromRole="Project" />
+    <NavigationProperty Name="Manager" Relationship="LightSwitchApplication.Project_Employee1" ToRole="Employee" FromRole="Project" />
+    <NavigationProperty Name="StaffingRequirements" Relationship="LightSwitchApplication.StaffingRequirement_Project" ToRole="StaffingRequirement" FromRole="Project" />
+    <NavigationProperty Name="EmployeeAssignment" Relationship="LightSwitchApplication.EmployeeAssignment_Project" ToRole="EmployeeAssignment" FromRole="Project" />
+    <NavigationProperty Name="TimeForecasts" Relationship="LightSwitchApplication.TimeForecast_Project" ToRole="TimeForecast" FromRole="Project" />
+    <NavigationProperty Name="TimeForecastExceptionsCollection" Relationship="LightSwitchApplication.TimeForecastExceptions_Project" ToRole="TimeForecastExceptions" FromRole="Project" />
+    <NavigationProperty Name="ProjectRatesItem" Relationship="LightSwitchApplication.ProjectRate_Project" ToRole="ProjectRate" FromRole="Project" />
+    <NavigationProperty Name="ProjectRule" Relationship="LightSwitchApplication.ProjectRule_Project" ToRole="ProjectRule" FromRole="Project" />
+    <NavigationProperty Name="ProjectFeatures" Relationship="LightSwitchApplication.ProjectFeature_Project" ToRole="ProjectFeature" FromRole="Project" />
+    <NavigationProperty Name="ProjectIncidentsItem" Relationship="LightSwitchApplication.ProjectIncident_Project" ToRole="ProjectIncident" FromRole="Project" />
+    <NavigationProperty Name="ProjectVpns" Relationship="LightSwitchApplication.ProjectVpn_Project" ToRole="ProjectVpn" FromRole="Project" />
+    <NavigationProperty Name="ProjectWebTools" Relationship="LightSwitchApplication.ProjectWebTool_Project" ToRole="ProjectWebTool" FromRole="Project" />
+    <NavigationProperty Name="Customers" Relationship="LightSwitchApplication.Customer_Project" ToRole="Customer" FromRole="Project" />
+    <NavigationProperty Name="ProjectEnvironments" Relationship="LightSwitchApplication.ProjectEnvironment_Project" ToRole="ProjectEnvironment" FromRole="Project" />
+    <NavigationProperty Name="ProjectTasks" Relationship="LightSwitchApplication.ProjectTask_Project" ToRole="ProjectTask" FromRole="Project" />
+  </EntityType>
+  <EntityType Name="StaffingRequirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Level" Type="Edm.Int16" Nullable="false" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Skill" Type="Edm.Int16" Nullable="false" />
+    <Property Name="Industry" Type="Edm.Int16" Nullable="false" />
+    <Property Name="FTEs" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DateRequired" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="StaffingRequirement_Project" Type="Edm.Int32" Nullable="false" />
+    <Property Name="StaffingRequirement_EmployeeLevel" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeLevel" Relationship="LightSwitchApplication.StaffingRequirement_EmployeeLevel" ToRole="EmployeeLevel" FromRole="StaffingRequirement" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.StaffingRequirement_Project" ToRole="Project" FromRole="StaffingRequirement" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="25" />
+    <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="25" />
+    <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="40" />
+    <Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Office" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Supervisor" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="ExcludeFromAvailabilityReport" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="IsInactive" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="IsDod" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="SupervisorFullNameSorting" Type="Edm.String" MaxLength="255" />
+    <Property Name="Employee_Employee" Type="Edm.Int32" />
+    <Property Name="Country_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Department_Employee1" Type="Edm.Int32" />
+    <Property Name="Employee_Department2" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Employee_EmployeeTitle3" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="DeptEmployee" Relationship="LightSwitchApplication.Employee_Department" ToRole="Department" FromRole="Employee" />
+    <NavigationProperty Name="EmployeeAssignments" Relationship="LightSwitchApplication.EmployeeAssignment_Employee" ToRole="EmployeeAssignment" FromRole="Employee" />
+    <NavigationProperty Name="Projects" Relationship="LightSwitchApplication.Project_Employee" ToRole="Project" FromRole="Employee" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.Project_Employee1" ToRole="Project" FromRole="Employee" />
+    <NavigationProperty Name="TimeForecasts" Relationship="LightSwitchApplication.TimeForecast_Employee" ToRole="TimeForecast" FromRole="Employee" />
+    <NavigationProperty Name="Supervsr" Relationship="LightSwitchApplication.Employee_Employee" ToRole="Employee1" FromRole="Employee2" />
+    <NavigationProperty Name="TimeForecastExceptionsCollection" Relationship="LightSwitchApplication.TimeForecastExceptions_Employee" ToRole="TimeForecastExceptions" FromRole="Employee" />
+    <NavigationProperty Name="ReviewHeaders" Relationship="LightSwitchApplication.ReviewHeader_Employee" ToRole="ReviewHeader" FromRole="Employee" />
+    <NavigationProperty Name="ReviewHeaders1" Relationship="LightSwitchApplication.ReviewHeader_Employee1" ToRole="ReviewHeader" FromRole="Employee" />
+    <NavigationProperty Name="DirectReport" Relationship="LightSwitchApplication.Employee_Employee" ToRole="Employee2" FromRole="Employee1" />
+    <NavigationProperty Name="Signatures" Relationship="LightSwitchApplication.Signature_Employee" ToRole="Signature" FromRole="Employee" />
+    <NavigationProperty Name="Country" Relationship="LightSwitchApplication.Country_Employee" ToRole="Country" FromRole="Employee" />
+    <NavigationProperty Name="ProjectFeatures" Relationship="LightSwitchApplication.ProjectFeature_Employee" ToRole="ProjectFeature" FromRole="Employee" />
+    <NavigationProperty Name="EmployeeSkills" Relationship="LightSwitchApplication.EmployeeSkill_Employee" ToRole="EmployeeSkill" FromRole="Employee" />
+    <NavigationProperty Name="ProjectIncidents" Relationship="LightSwitchApplication.ProjectIncident_Employee" ToRole="ProjectIncident" FromRole="Employee" />
+    <NavigationProperty Name="ProjectIncidentComments" Relationship="LightSwitchApplication.ProjectIncidentComment_Employee" ToRole="ProjectIncidentComment" FromRole="Employee" />
+    <NavigationProperty Name="ProjectFeatureComments" Relationship="LightSwitchApplication.ProjectFeatureComment_Employee" ToRole="ProjectFeatureComment" FromRole="Employee" />
+    <NavigationProperty Name="TimeTrackings" Relationship="LightSwitchApplication.TimeTracking_Employee" ToRole="TimeTracking" FromRole="Employee" />
+    <NavigationProperty Name="ProjectTask" Relationship="LightSwitchApplication.ProjectTask_Employee" ToRole="ProjectTask" FromRole="Employee" />
+    <NavigationProperty Name="ProjectTaskComments" Relationship="LightSwitchApplication.ProjectTaskComment_Employee" ToRole="ProjectTaskComment" FromRole="Employee" />
+    <NavigationProperty Name="TDDExtensions" Relationship="LightSwitchApplication.TDDExtension_Employee" ToRole="TDDExtension" FromRole="Employee" />
+    <NavigationProperty Name="ContactProjectFeatures" Relationship="LightSwitchApplication.ProjectFeature_Employee1" ToRole="ProjectFeature" FromRole="Employee" />
+    <NavigationProperty Name="ContactProjectIncidents" Relationship="LightSwitchApplication.ProjectIncident_Employee1" ToRole="ProjectIncident" FromRole="Employee" />
+    <NavigationProperty Name="Requirements" Relationship="LightSwitchApplication.Requirement_Employee" ToRole="Requirement" FromRole="Employee" />
+    <NavigationProperty Name="Issues" Relationship="LightSwitchApplication.Issue_Employee" ToRole="Issue" FromRole="Employee" />
+    <NavigationProperty Name="ReportedIssues" Relationship="LightSwitchApplication.Issue_Employee1" ToRole="Issue" FromRole="Employee" />
+    <NavigationProperty Name="TimeTracks" Relationship="LightSwitchApplication.TimeTrack_Employee" ToRole="TimeTrack" FromRole="Employee" />
+    <NavigationProperty Name="Dept" Relationship="LightSwitchApplication.Department_Employee" ToRole="Department" FromRole="Employee" />
+    <NavigationProperty Name="EmployeeTitle" Relationship="LightSwitchApplication.Employee_EmployeeTitle" ToRole="EmployeeTitle" FromRole="Employee" />
+    <NavigationProperty Name="ReviewHeaders2" Relationship="LightSwitchApplication.ReviewHeader_Employee2" ToRole="ReviewHeader" FromRole="Employee" />
+  </EntityType>
+  <EntityType Name="EmployeeAssignment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Percent" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Chargeable" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="RolloffSheduled" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="EmployeeAssignment_Project" Type="Edm.Int32" Nullable="false" />
+    <Property Name="EmployeeAssignment_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="EmployeeAssignment_EmployeeLevel" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="LightSwitchApplication.EmployeeAssignment_Project" ToRole="Project" FromRole="EmployeeAssignment" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.EmployeeAssignment_Employee" ToRole="Employee" FromRole="EmployeeAssignment" />
+    <NavigationProperty Name="EmployeeLevel" Relationship="LightSwitchApplication.EmployeeAssignment_EmployeeLevel" ToRole="EmployeeLevel" FromRole="EmployeeAssignment" />
+  </EntityType>
+  <EntityType Name="TimeForecast">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Percent" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Chargeable" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Notes" Type="Edm.String" MaxLength="255" />
+    <Property Name="TimeForecast_Project" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TimeForecast_Employee" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.TimeForecast_Project" ToRole="Project" FromRole="TimeForecast" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.TimeForecast_Employee" ToRole="Employee" FromRole="TimeForecast" />
+  </EntityType>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HolidayName" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Countries" Relationship="LightSwitchApplication.CountryHoliday_Holiday" ToRole="CountryHoliday" FromRole="Holiday" />
+  </EntityType>
+  <EntityType Name="Announcement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnnouncementText" Type="Edm.String" MaxLength="255" />
+    <Property Name="Picture" Type="Edm.Binary" MaxLength="Max" />
+    <Property Name="MoreInfoLink" Type="Edm.String" MaxLength="255" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="TimeForecastExceptions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Percent" Type="Edm.Int32" Nullable="false" />
+    <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Notes" Type="Edm.String" MaxLength="255" />
+    <Property Name="TimeForecastExceptions_Project" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TimeForecastExceptions_Employee" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.TimeForecastExceptions_Project" ToRole="Project" FromRole="TimeForecastExceptions" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.TimeForecastExceptions_Employee" ToRole="Employee" FromRole="TimeForecastExceptions" />
+  </EntityType>
+  <EntityType Name="EvaluationCriteria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Criteria" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="EvaluationCriteria_Department" Type="Edm.Int32" Nullable="false" />
+    <Property Name="EvaluationCriteria_EmployeeLevel1" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="EvaluationCriteriaDepartment" Relationship="LightSwitchApplication.EvaluationCriteria_Department" ToRole="Department" FromRole="EvaluationCriteria" />
+    <NavigationProperty Name="EmployeeLevel" Relationship="LightSwitchApplication.EvaluationCriteria_EmployeeLevel" ToRole="EmployeeLevel" FromRole="EvaluationCriteria" />
+  </EntityType>
+  <EntityType Name="ReviewHeader">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="ReviewDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="TimePeriodCoveredStart" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="TimePeriodCoveredEnd" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="ReviewType" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Supervisor" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="ProjectsCovered" Type="Edm.String" MaxLength="255" />
+    <Property Name="Role" Type="Edm.String" MaxLength="255" />
+    <Property Name="Promote" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="Strengths" Type="Edm.String" MaxLength="4000" />
+    <Property Name="DevelopmentNeeds" Type="Edm.String" MaxLength="4000" />
+    <Property Name="SummaryRating" Type="Edm.Int32" Nullable="false" />
+    <Property Name="MajorAssignments" Type="Edm.String" MaxLength="1000" />
+    <Property Name="EmployeeHasSigned" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="SignedStatus" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Published" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="EmployeeReviewerFullName" Type="Edm.String" MaxLength="255" />
+    <Property Name="EmployeeSupervisorFullName" Type="Edm.String" MaxLength="255" />
+    <Property Name="ReviewHeader_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ReviewHeader_Employee1" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ReviewHeader_Employee2" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.ReviewHeader_Employee" ToRole="Employee" FromRole="ReviewHeader" />
+    <NavigationProperty Name="Reviewer" Relationship="LightSwitchApplication.ReviewHeader_Employee1" ToRole="Employee" FromRole="ReviewHeader" />
+    <NavigationProperty Name="ReviewCritieria" Relationship="LightSwitchApplication.ReviewCritieria_ReviewHeader" ToRole="ReviewCritieria" FromRole="ReviewHeader" />
+    <NavigationProperty Name="Signatures" Relationship="LightSwitchApplication.Signature_ReviewHeader" ToRole="Signature" FromRole="ReviewHeader" />
+    <NavigationProperty Name="TrainingPlans" Relationship="LightSwitchApplication.TrainingPlan_ReviewHeader" ToRole="TrainingPlan" FromRole="ReviewHeader" />
+    <NavigationProperty Name="SupervisorEmployee" Relationship="LightSwitchApplication.ReviewHeader_Employee2" ToRole="Employee" FromRole="ReviewHeader" />
+  </EntityType>
+  <EntityType Name="ReviewCritieria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Rating" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Criteria" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Comments" Type="Edm.String" MaxLength="255" />
+    <Property Name="ReviewCriteria_ReviewHeader" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="ReviewHeader" Relationship="LightSwitchApplication.ReviewCritieria_ReviewHeader" ToRole="ReviewHeader" FromRole="ReviewCritieria" />
+  </EntityType>
+  <EntityType Name="Signature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="SigningDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Signature_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Signature_ReviewHeader" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.Signature_Employee" ToRole="Employee" FromRole="Signature" />
+    <NavigationProperty Name="ReviewHeader" Relationship="LightSwitchApplication.Signature_ReviewHeader" ToRole="ReviewHeader" FromRole="Signature" />
+  </EntityType>
+  <EntityType Name="TrainingCourses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="CourseName" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Days" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Cost" Type="Edm.Decimal" Precision="18" Scale="2" />
+    <Property Name="CourseAbstract" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Provider" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Link" Type="Edm.String" MaxLength="255" />
+    <Property Name="IsInactive" Type="Edm.Boolean" Nullable="false" />
+    <NavigationProperty Name="TrainingPlans" Relationship="LightSwitchApplication.TrainingPlan_TrainingCourses" ToRole="TrainingPlan" FromRole="TrainingCourses" />
+  </EntityType>
+  <EntityType Name="TrainingPlan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TargetCompletionDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Comments" Type="Edm.String" MaxLength="255" />
+    <Property Name="TrainingPlan_ReviewHeader" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TrainingPlan_TrainingCourses" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="ReviewHeader" Relationship="LightSwitchApplication.TrainingPlan_ReviewHeader" ToRole="ReviewHeader" FromRole="TrainingPlan" />
+    <NavigationProperty Name="TrainingCourses" Relationship="LightSwitchApplication.TrainingPlan_TrainingCourses" ToRole="TrainingCourses" FromRole="TrainingPlan" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Zone" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Code" Type="Edm.String" MaxLength="5" />
+    <Property Name="TimeZoneOffset" Type="Edm.Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Employees" Relationship="LightSwitchApplication.Country_Employee" ToRole="Employee" FromRole="Country" />
+    <NavigationProperty Name="Holidays" Relationship="LightSwitchApplication.CountryHoliday_Country" ToRole="CountryHoliday" FromRole="Country" />
+  </EntityType>
+  <EntityType Name="CountryHoliday">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="EndDate" Type="Edm.DateTime" />
+    <Property Name="CountryHoliday_Country" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CountryHoliday_Holiday" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Holiday" Relationship="LightSwitchApplication.CountryHoliday_Holiday" ToRole="Holiday" FromRole="CountryHoliday" />
+    <NavigationProperty Name="Country" Relationship="LightSwitchApplication.CountryHoliday_Country" ToRole="Country" FromRole="CountryHoliday" />
+  </EntityType>
+  <EntityType Name="ProjectRate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Rate" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="ProjectRate_Project" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ProjectRate_EmployeeTitle" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ProjectRate_EmployeeLevel" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectRate_Project" ToRole="Project" FromRole="ProjectRate" />
+    <NavigationProperty Name="EmployeeLevel" Relationship="LightSwitchApplication.ProjectRate_EmployeeLevel" ToRole="EmployeeLevel" FromRole="ProjectRate" />
+    <NavigationProperty Name="EmployeeTitle" Relationship="LightSwitchApplication.ProjectRate_EmployeeTitle" ToRole="EmployeeTitle" FromRole="ProjectRate" />
+  </EntityType>
+  <EntityType Name="EmployeeTitle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Description" Type="Edm.String" MaxLength="255" />
+    <Property Name="EmployeeTitle_EmployeeLevel" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="ProjectRatesItem" Relationship="LightSwitchApplication.ProjectRate_EmployeeTitle" ToRole="ProjectRate" FromRole="EmployeeTitle" />
+    <NavigationProperty Name="Employees" Relationship="LightSwitchApplication.Employee_EmployeeTitle" ToRole="Employee" FromRole="EmployeeTitle" />
+    <NavigationProperty Name="EmployeeLevel" Relationship="LightSwitchApplication.EmployeeTitle_EmployeeLevel" ToRole="EmployeeLevel" FromRole="EmployeeTitle" />
+  </EntityType>
+  <EntityType Name="Configuration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Key" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="ValueType" Type="Edm.String" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ProjectVpn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Url" Type="Edm.String" MaxLength="255" />
+    <Property Name="User" Type="Edm.String" MaxLength="255" />
+    <Property Name="Password" Type="Edm.String" MaxLength="255" />
+    <Property Name="MoreInfo" Type="Edm.String" MaxLength="255" />
+    <Property Name="ProjectVpn_Project" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectVpn_Project" ToRole="Project" FromRole="ProjectVpn" />
+  </EntityType>
+  <EntityType Name="ProjectFeature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="FeatureId" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="ClientId" Type="Edm.String" MaxLength="255" />
+    <Property Name="DocumentName" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="SkyDriveLink" Type="Edm.String" MaxLength="255" />
+    <Property Name="Priority" Type="Edm.Int32" Nullable="false" />
+    <Property Name="IsApproved" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="ApprovedDate" Type="Edm.DateTime" />
+    <Property Name="AssignedDate" Type="Edm.DateTime" />
+    <Property Name="DODTeam" Type="Edm.String" MaxLength="255" />
+    <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="TestingStatus" Type="Edm.String" MaxLength="255" />
+    <Property Name="ConsumedAnalysisHours" Type="Edm.Int32" />
+    <Property Name="ConsumedDevelopmentHours" Type="Edm.Int32" />
+    <Property Name="PercentageCompleted" Type="Edm.Decimal" Precision="18" Scale="9" />
+    <Property Name="CompletedDate" Type="Edm.DateTime" />
+    <Property Name="MergeStatus" Type="Edm.String" MaxLength="255" />
+    <Property Name="DevelopmentProjectName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="VisualStudioProjectName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LabelFileName" Type="Edm.String" MaxLength="255" />
+    <Property Name="ProjectFeature_Employee" Type="Edm.Int32" />
+    <Property Name="ProjectFeature_Project" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ProjectFeature_Employee1" Type="Edm.Int32" />
+    <NavigationProperty Name="Developer" Relationship="LightSwitchApplication.ProjectFeature_Employee" ToRole="Employee" FromRole="ProjectFeature" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectFeature_Project" ToRole="Project" FromRole="ProjectFeature" />
+    <NavigationProperty Name="ProjectFeatureComments" Relationship="LightSwitchApplication.ProjectFeatureComment_ProjectFeature" ToRole="ProjectFeatureComment" FromRole="ProjectFeature" />
+    <NavigationProperty Name="TimeTrackings" Relationship="LightSwitchApplication.TimeTracking_ProjectFeature" ToRole="TimeTracking" FromRole="ProjectFeature" />
+    <NavigationProperty Name="TDDExtensions" Relationship="LightSwitchApplication.TDDExtension_ProjectFeature" ToRole="TDDExtension" FromRole="ProjectFeature" />
+    <NavigationProperty Name="PrimaryContact" Relationship="LightSwitchApplication.ProjectFeature_Employee1" ToRole="Employee" FromRole="ProjectFeature" />
+    <NavigationProperty Name="Requirements" Relationship="LightSwitchApplication.Requirement_ProjectFeature" ToRole="Requirement" FromRole="ProjectFeature" />
+    <NavigationProperty Name="Issues" Relationship="LightSwitchApplication.Issue_ProjectFeature" ToRole="Issue" FromRole="ProjectFeature" />
+    <NavigationProperty Name="TDDObjects" Relationship="LightSwitchApplication.TDDObject_ProjectFeature" ToRole="TDDObject" FromRole="ProjectFeature" />
+  </EntityType>
+  <EntityType Name="ProjectIncident">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="IncidentId" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="ClientId" Type="Edm.String" MaxLength="255" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="SkyDriveLink" Type="Edm.String" MaxLength="255" />
+    <Property Name="Description" Type="Edm.String" MaxLength="512" />
+    <Property Name="DateFound" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Priority" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Severity" Type="Edm.Int32" Nullable="false" />
+    <Property Name="AssignedDate" Type="Edm.DateTime" />
+    <Property Name="DODTeam" Type="Edm.String" MaxLength="255" />
+    <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="ConsumedAnalysisHours" Type="Edm.Int32" />
+    <Property Name="ConsumedDevelopmentHours" Type="Edm.Int32" />
+    <Property Name="PercentageCompleted" Type="Edm.Decimal" Precision="18" Scale="9" />
+    <Property Name="CompletedDate" Type="Edm.DateTime" />
+    <Property Name="DevelopmentProjectName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="VisualStudioProjectName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LabelFileName" Type="Edm.String" MaxLength="255" />
+    <Property Name="ProjectIncident_Project" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ProjectIncident_Employee" Type="Edm.Int32" />
+    <Property Name="ProjectIncident_Employee1" Type="Edm.Int32" />
+    <NavigationProperty Name="Developer" Relationship="LightSwitchApplication.ProjectIncident_Employee" ToRole="Employee" FromRole="ProjectIncident" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectIncident_Project" ToRole="Project" FromRole="ProjectIncident" />
+    <NavigationProperty Name="ProjectIncidentComments" Relationship="LightSwitchApplication.ProjectIncidentComment_ProjectIncident" ToRole="ProjectIncidentComment" FromRole="ProjectIncident" />
+    <NavigationProperty Name="TimeTrackings" Relationship="LightSwitchApplication.TimeTracking_ProjectIncident" ToRole="TimeTracking" FromRole="ProjectIncident" />
+    <NavigationProperty Name="TDDExtensions" Relationship="LightSwitchApplication.TDDExtension_ProjectIncident" ToRole="TDDExtension" FromRole="ProjectIncident" />
+    <NavigationProperty Name="ReportedBy" Relationship="LightSwitchApplication.ProjectIncident_Employee1" ToRole="Employee" FromRole="ProjectIncident" />
+    <NavigationProperty Name="Requirements" Relationship="LightSwitchApplication.Requirement_ProjectIncident" ToRole="Requirement" FromRole="ProjectIncident" />
+    <NavigationProperty Name="Issues" Relationship="LightSwitchApplication.Issue_ProjectIncident" ToRole="Issue" FromRole="ProjectIncident" />
+    <NavigationProperty Name="TDDObjects" Relationship="LightSwitchApplication.TDDObject_ProjectIncident" ToRole="TDDObject" FromRole="ProjectIncident" />
+  </EntityType>
+  <EntityType Name="ProjectEnvironment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="IpName" Type="Edm.String" MaxLength="255" />
+    <Property Name="Port" Type="Edm.String" MaxLength="255" />
+    <Property Name="DbIpName" Type="Edm.String" MaxLength="255" />
+    <Property Name="SsrsIpName" Type="Edm.String" MaxLength="255" />
+    <Property Name="SsasIpName" Type="Edm.String" MaxLength="255" />
+    <Property Name="EpIpName" Type="Edm.String" MaxLength="255" />
+    <Property Name="ClientIpName" Type="Edm.String" MaxLength="255" />
+    <Property Name="ProjectEnvironment_Project" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectEnvironment_Project" ToRole="Project" FromRole="ProjectEnvironment" />
+  </EntityType>
+  <EntityType Name="ProjectRule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="CommentRule" Type="Edm.String" MaxLength="255" />
+    <Property Name="CommentMethodName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LabelFile" Type="Edm.String" MaxLength="255" />
+    <Property Name="Layer" Type="Edm.String" MaxLength="255" />
+    <Property Name="LayerKey" Type="Edm.String" MaxLength="255" />
+    <Property Name="BestPracticeLevel" Type="Edm.String" MaxLength="255" />
+    <Property Name="PrefixOfObject" Type="Edm.String" MaxLength="255" />
+    <Property Name="PrefixOfMethod" Type="Edm.String" MaxLength="255" />
+    <Property Name="PrefixOfField" Type="Edm.String" MaxLength="255" />
+    <Property Name="PrefixOfAotProjects" Type="Edm.String" MaxLength="255" />
+    <Property Name="BackupFolder" Type="Edm.String" MaxLength="255" />
+    <Property Name="ProjectRules_Project" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectRule_Project" ToRole="Project" FromRole="ProjectRule" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Description" Type="Edm.String" MaxLength="255" />
+    <Property Name="Skill_SkillCategory" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeSkills" Relationship="LightSwitchApplication.EmployeeSkill_Skill" ToRole="EmployeeSkill" FromRole="Skill" />
+    <NavigationProperty Name="SkillCategory" Relationship="LightSwitchApplication.Skill_SkillCategory" ToRole="SkillCategory" FromRole="Skill" />
+  </EntityType>
+  <EntityType Name="EmployeeSkill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Level" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Comments" Type="Edm.String" MaxLength="255" />
+    <Property Name="IsCertified" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="EmployeeSkill_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="EmployeeSkill_Skill" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.EmployeeSkill_Employee" ToRole="Employee" FromRole="EmployeeSkill" />
+    <NavigationProperty Name="Skill" Relationship="LightSwitchApplication.EmployeeSkill_Skill" ToRole="Skill" FromRole="EmployeeSkill" />
+  </EntityType>
+  <EntityType Name="SkillCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Description" Type="Edm.String" MaxLength="255" />
+    <NavigationProperty Name="Skills" Relationship="LightSwitchApplication.Skill_SkillCategory" ToRole="Skill" FromRole="SkillCategory" />
+  </EntityType>
+  <EntityType Name="ProjectWebTool">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Path" Type="Edm.String" Nullable="false" MaxLength="511" />
+    <Property Name="Icon" Type="Edm.Binary" MaxLength="Max" />
+    <Property Name="ProjectWebTool_Project" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectWebTool_Project" ToRole="Project" FromRole="ProjectWebTool" />
+  </EntityType>
+  <EntityType Name="ProjectFeatureComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Comment" Type="Edm.String" Nullable="false" MaxLength="512" />
+    <Property Name="PostDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="ProjectFeatureComment_ProjectFeature" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ProjectFeatureComment_Employee" Type="Edm.Int32" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.ProjectFeatureComment_Employee" ToRole="Employee" FromRole="ProjectFeatureComment" />
+    <NavigationProperty Name="ProjectFeature" Relationship="LightSwitchApplication.ProjectFeatureComment_ProjectFeature" ToRole="ProjectFeature" FromRole="ProjectFeatureComment" />
+  </EntityType>
+  <EntityType Name="ProjectIncidentComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Comment" Type="Edm.String" Nullable="false" MaxLength="512" />
+    <Property Name="PostDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="ProjectIncidentComment_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="ProjectIncidentComment_ProjectIncident" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.ProjectIncidentComment_Employee" ToRole="Employee" FromRole="ProjectIncidentComment" />
+    <NavigationProperty Name="ProjectIncident" Relationship="LightSwitchApplication.ProjectIncidentComment_ProjectIncident" ToRole="ProjectIncident" FromRole="ProjectIncidentComment" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="FullName" Type="Edm.String" MaxLength="255" />
+    <Property Name="FirstName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LastName" Type="Edm.String" MaxLength="255" />
+    <Property Name="Title" Type="Edm.String" MaxLength="255" />
+    <Property Name="Customer_Project" Type="Edm.Int32" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.Customer_Project" ToRole="Project" FromRole="Customer" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Account" Type="Edm.String" MaxLength="255" />
+    <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="IsInternal" Type="Edm.Boolean" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="LightSwitchApplication.Client_Project" ToRole="Project" FromRole="Client" />
+  </EntityType>
+  <EntityType Name="TimeTracking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="IsForIssue" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="Task" Type="Edm.String" MaxLength="255" />
+    <Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="StartTime" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="EndTime" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Chargeable" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Notes" Type="Edm.String" MaxLength="512" />
+    <Property Name="TimeTracking_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TimeTracking_ProjectIncident" Type="Edm.Int32" />
+    <Property Name="TimeTracking_ProjectFeature" Type="Edm.Int32" />
+    <Property Name="ProjectTask_TimeTracking" Type="Edm.Int32" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.TimeTracking_Employee" ToRole="Employee" FromRole="TimeTracking" />
+    <NavigationProperty Name="ProjectIncident" Relationship="LightSwitchApplication.TimeTracking_ProjectIncident" ToRole="ProjectIncident" FromRole="TimeTracking" />
+    <NavigationProperty Name="ProjectFeature" Relationship="LightSwitchApplication.TimeTracking_ProjectFeature" ToRole="ProjectFeature" FromRole="TimeTracking" />
+    <NavigationProperty Name="ProjectTask" Relationship="LightSwitchApplication.ProjectTask_TimeTracking" ToRole="ProjectTask" FromRole="TimeTracking" />
+  </EntityType>
+  <EntityType Name="ProjectTask">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="SkyDriveLink" Type="Edm.String" MaxLength="255" />
+    <Property Name="Priority" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="DateAssigned" Type="Edm.DateTime" />
+    <Property Name="DODTeam" Type="Edm.String" MaxLength="255" />
+    <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="AnalysisHours" Type="Edm.Int32" />
+    <Property Name="DevelopmentHours" Type="Edm.Int32" />
+    <Property Name="PercentageCompleted" Type="Edm.Decimal" Precision="18" Scale="9" />
+    <Property Name="DateCompleted" Type="Edm.DateTime" />
+    <Property Name="DevelopmentProjectName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="VisualStudioProjectName" Type="Edm.String" MaxLength="255" />
+    <Property Name="LabelFileName" Type="Edm.String" MaxLength="255" />
+    <Property Name="ProjectTask_Employee" Type="Edm.Int32" />
+    <Property Name="ProjectTask_Project" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.ProjectTask_Employee" ToRole="Employee" FromRole="ProjectTask" />
+    <NavigationProperty Name="TimeTrackings" Relationship="LightSwitchApplication.ProjectTask_TimeTracking" ToRole="TimeTracking" FromRole="ProjectTask" />
+    <NavigationProperty Name="ProjectTaskComments" Relationship="LightSwitchApplication.ProjectTaskComment_ProjectTask" ToRole="ProjectTaskComment" FromRole="ProjectTask" />
+    <NavigationProperty Name="Project" Relationship="LightSwitchApplication.ProjectTask_Project" ToRole="Project" FromRole="ProjectTask" />
+    <NavigationProperty Name="Requirements" Relationship="LightSwitchApplication.Requirement_ProjectTask" ToRole="Requirement" FromRole="ProjectTask" />
+    <NavigationProperty Name="Issues" Relationship="LightSwitchApplication.Issue_ProjectTask" ToRole="Issue" FromRole="ProjectTask" />
+    <NavigationProperty Name="TDDObjects" Relationship="LightSwitchApplication.TDDObject_ProjectTask" ToRole="TDDObject" FromRole="ProjectTask" />
+  </EntityType>
+  <EntityType Name="ProjectTaskComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Comment" Type="Edm.String" Nullable="false" MaxLength="512" />
+    <Property Name="PostDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="ProjectTaskComment_Employee" Type="Edm.Int32" />
+    <Property Name="ProjectTaskComment_ProjectTask" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.ProjectTaskComment_Employee" ToRole="Employee" FromRole="ProjectTaskComment" />
+    <NavigationProperty Name="ProjectTask" Relationship="LightSwitchApplication.ProjectTaskComment_ProjectTask" ToRole="ProjectTask" FromRole="ProjectTaskComment" />
+  </EntityType>
+  <EntityType Name="TDDExtension">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="ObjectName" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Comments" Type="Edm.String" MaxLength="512" />
+    <Property Name="TDDExtension_ProjectFeature" Type="Edm.Int32" />
+    <Property Name="TDDExtension_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TDDExtension_ProjectIncident" Type="Edm.Int32" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.TDDExtension_Employee" ToRole="Employee" FromRole="TDDExtension" />
+    <NavigationProperty Name="ProjectFeature" Relationship="LightSwitchApplication.TDDExtension_ProjectFeature" ToRole="ProjectFeature" FromRole="TDDExtension" />
+    <NavigationProperty Name="ProjectIncident" Relationship="LightSwitchApplication.TDDExtension_ProjectIncident" ToRole="ProjectIncident" FromRole="TDDExtension" />
+  </EntityType>
+  <EntityType Name="Requirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="ReqId" Type="Edm.String" MaxLength="255" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Priority" Type="Edm.String" MaxLength="255" />
+    <Property Name="EstimateHours" Type="Edm.Decimal" Precision="10" Scale="1" />
+    <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Requirement_ProjectFeature" Type="Edm.Int32" />
+    <Property Name="Requirement_ProjectIncident" Type="Edm.Int32" />
+    <Property Name="Requirement_ProjectTask" Type="Edm.Int32" />
+    <Property Name="Requirement_Employee" Type="Edm.Int32" />
+    <NavigationProperty Name="ProjectFeature" Relationship="LightSwitchApplication.Requirement_ProjectFeature" ToRole="ProjectFeature" FromRole="Requirement" />
+    <NavigationProperty Name="ProjectIncident" Relationship="LightSwitchApplication.Requirement_ProjectIncident" ToRole="ProjectIncident" FromRole="Requirement" />
+    <NavigationProperty Name="ProjectTask" Relationship="LightSwitchApplication.Requirement_ProjectTask" ToRole="ProjectTask" FromRole="Requirement" />
+    <NavigationProperty Name="AssignedTo" Relationship="LightSwitchApplication.Requirement_Employee" ToRole="Employee" FromRole="Requirement" />
+    <NavigationProperty Name="TimeTracks" Relationship="LightSwitchApplication.TimeTrack_Requirement" ToRole="TimeTrack" FromRole="Requirement" />
+  </EntityType>
+  <EntityType Name="Issue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="IssueId" Type="Edm.String" MaxLength="255" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="ReportedAt" Type="Edm.DateTime" />
+    <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Priority" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="EstimateHours" Type="Edm.Decimal" Precision="5" Scale="1" />
+    <Property Name="LastUpdate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="Issue_ProjectFeature" Type="Edm.Int32" />
+    <Property Name="Issue_ProjectIncident" Type="Edm.Int32" />
+    <Property Name="Issue_ProjectTask" Type="Edm.Int32" />
+    <Property Name="Issue_Employee1" Type="Edm.Int32" />
+    <Property Name="Issue_Employee11" Type="Edm.Int32" />
+    <NavigationProperty Name="ProjectFeature" Relationship="LightSwitchApplication.Issue_ProjectFeature" ToRole="ProjectFeature" FromRole="Issue" />
+    <NavigationProperty Name="ProjectIncident" Relationship="LightSwitchApplication.Issue_ProjectIncident" ToRole="ProjectIncident" FromRole="Issue" />
+    <NavigationProperty Name="ProjectTask" Relationship="LightSwitchApplication.Issue_ProjectTask" ToRole="ProjectTask" FromRole="Issue" />
+    <NavigationProperty Name="AssignedTo" Relationship="LightSwitchApplication.Issue_Employee" ToRole="Employee" FromRole="Issue" />
+    <NavigationProperty Name="ReportedBy" Relationship="LightSwitchApplication.Issue_Employee1" ToRole="Employee" FromRole="Issue" />
+    <NavigationProperty Name="TimeTracks" Relationship="LightSwitchApplication.TimeTrack_Issue" ToRole="TimeTrack" FromRole="Issue" />
+  </EntityType>
+  <EntityType Name="TimeTrack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="StartTime" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="EndTime" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="IsForIssue" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Billable" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Notes" Type="Edm.String" MaxLength="512" />
+    <Property Name="Task" Type="Edm.String" MaxLength="255" />
+    <Property Name="TimeTrack_Employee" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TimeTrack_Requirement" Type="Edm.Int32" />
+    <Property Name="TimeTrack_Issue" Type="Edm.Int32" />
+    <NavigationProperty Name="Employee" Relationship="LightSwitchApplication.TimeTrack_Employee" ToRole="Employee" FromRole="TimeTrack" />
+    <NavigationProperty Name="Requirement" Relationship="LightSwitchApplication.TimeTrack_Requirement" ToRole="Requirement" FromRole="TimeTrack" />
+    <NavigationProperty Name="Issue" Relationship="LightSwitchApplication.TimeTrack_Issue" ToRole="Issue" FromRole="TimeTrack" />
+  </EntityType>
+  <EntityType Name="TDDObject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Notes" Type="Edm.String" MaxLength="1024" />
+    <Property Name="CodeReviewNotes" Type="Edm.String" MaxLength="1024" />
+    <Property Name="TDDObject_ProjectFeature" Type="Edm.Int32" />
+    <Property Name="TDDObject_ProjectIncident" Type="Edm.Int32" />
+    <Property Name="TDDObject_ProjectTask" Type="Edm.Int32" />
+    <NavigationProperty Name="TDDDetails" Relationship="LightSwitchApplication.TDDDetail_TDDObject" ToRole="TDDDetail" FromRole="TDDObject" />
+    <NavigationProperty Name="ProjectFeature" Relationship="LightSwitchApplication.TDDObject_ProjectFeature" ToRole="ProjectFeature" FromRole="TDDObject" />
+    <NavigationProperty Name="ProjectIncident" Relationship="LightSwitchApplication.TDDObject_ProjectIncident" ToRole="ProjectIncident" FromRole="TDDObject" />
+    <NavigationProperty Name="ProjectTask" Relationship="LightSwitchApplication.TDDObject_ProjectTask" ToRole="ProjectTask" FromRole="TDDObject" />
+  </EntityType>
+  <EntityType Name="TDDDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Notes" Type="Edm.String" MaxLength="1024" />
+    <Property Name="CodeReviewNotes" Type="Edm.String" MaxLength="1024" />
+    <Property Name="TDDDetail_TDDObject" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="TDDObject" Relationship="LightSwitchApplication.TDDDetail_TDDObject" ToRole="TDDObject" FromRole="TDDDetail" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Description" Type="Edm.String" MaxLength="255" />
+    <Property Name="Number" Type="Edm.Int16" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="LightSwitchApplication.Department_Employee" ToRole="Employee" FromRole="Department" />
+    <NavigationProperty Name="Employees1" Relationship="LightSwitchApplication.Employee_Department" ToRole="Employee" FromRole="Department" />
+    <NavigationProperty Name="EvaluationCriterias" Relationship="LightSwitchApplication.EvaluationCriteria_Department" ToRole="EvaluationCriteria" FromRole="Department" />
+  </EntityType>
+  <EntityType Name="EmployeeLevel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Description" Type="Edm.String" MaxLength="255" />
+    <NavigationProperty Name="EmployeeAssignments" Relationship="LightSwitchApplication.EmployeeAssignment_EmployeeLevel" ToRole="EmployeeAssignment" FromRole="EmployeeLevel" />
+    <NavigationProperty Name="ProjectRates" Relationship="LightSwitchApplication.ProjectRate_EmployeeLevel" ToRole="ProjectRate" FromRole="EmployeeLevel" />
+    <NavigationProperty Name="StaffingRequirements" Relationship="LightSwitchApplication.StaffingRequirement_EmployeeLevel" ToRole="StaffingRequirement" FromRole="EmployeeLevel" />
+    <NavigationProperty Name="EmployeeTitles" Relationship="LightSwitchApplication.EmployeeTitle_EmployeeLevel" ToRole="EmployeeTitle" FromRole="EmployeeLevel" />
+    <NavigationProperty Name="EvaluationCriterias" Relationship="LightSwitchApplication.EvaluationCriteria_EmployeeLevel" ToRole="EvaluationCriteria" FromRole="EmployeeLevel" />
+  </EntityType>
+  <Association Name="StaffingRequirement_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StaffingRequirement" Type="LightSwitchApplication.StaffingRequirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffingRequirement">
+        <PropertyRef Name="StaffingRequirement_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeAssignment_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="EmployeeAssignment" Type="LightSwitchApplication.EmployeeAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeAssignment">
+        <PropertyRef Name="EmployeeAssignment_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeAssignment_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EmployeeAssignment" Type="LightSwitchApplication.EmployeeAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeAssignment">
+        <PropertyRef Name="EmployeeAssignment_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Project_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Employee1">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Project_Employee1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeForecast_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimeForecast" Type="LightSwitchApplication.TimeForecast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeForecast">
+        <PropertyRef Name="TimeForecast_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeForecast_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimeForecast" Type="LightSwitchApplication.TimeForecast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeForecast">
+        <PropertyRef Name="TimeForecast_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeForecastExceptions_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="TimeForecastExceptions" Type="LightSwitchApplication.TimeForecastExceptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeForecastExceptions">
+        <PropertyRef Name="TimeForecastExceptions_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeForecastExceptions_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="TimeForecastExceptions" Type="LightSwitchApplication.TimeForecastExceptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeForecastExceptions">
+        <PropertyRef Name="TimeForecastExceptions_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReviewHeader_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="ReviewHeader" Type="LightSwitchApplication.ReviewHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReviewHeader">
+        <PropertyRef Name="ReviewHeader_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReviewHeader_Employee1">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="ReviewHeader" Type="LightSwitchApplication.ReviewHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReviewHeader">
+        <PropertyRef Name="ReviewHeader_Employee1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReviewCritieria_ReviewHeader">
+    <End Role="ReviewHeader" Type="LightSwitchApplication.ReviewHeader" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ReviewCritieria" Type="LightSwitchApplication.ReviewCritieria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReviewHeader">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReviewCritieria">
+        <PropertyRef Name="ReviewCriteria_ReviewHeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Employee_Employee">
+    <End Role="Employee1" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="Employee2" Type="LightSwitchApplication.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee2">
+        <PropertyRef Name="Employee_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Signature_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="Signature" Type="LightSwitchApplication.Signature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Signature">
+        <PropertyRef Name="Signature_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Signature_ReviewHeader">
+    <End Role="ReviewHeader" Type="LightSwitchApplication.ReviewHeader" Multiplicity="1" />
+    <End Role="Signature" Type="LightSwitchApplication.Signature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReviewHeader">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Signature">
+        <PropertyRef Name="Signature_ReviewHeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrainingPlan_ReviewHeader">
+    <End Role="ReviewHeader" Type="LightSwitchApplication.ReviewHeader" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TrainingPlan" Type="LightSwitchApplication.TrainingPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReviewHeader">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPlan">
+        <PropertyRef Name="TrainingPlan_ReviewHeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrainingPlan_TrainingCourses">
+    <End Role="TrainingCourses" Type="LightSwitchApplication.TrainingCourses" Multiplicity="1" />
+    <End Role="TrainingPlan" Type="LightSwitchApplication.TrainingPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingCourses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPlan">
+        <PropertyRef Name="TrainingPlan_TrainingCourses" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Country_Employee">
+    <End Role="Country" Type="LightSwitchApplication.Country" Multiplicity="1" />
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Country_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountryHoliday_Country">
+    <End Role="Country" Type="LightSwitchApplication.Country" Multiplicity="1" />
+    <End Role="CountryHoliday" Type="LightSwitchApplication.CountryHoliday" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CountryHoliday">
+        <PropertyRef Name="CountryHoliday_Country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CountryHoliday_Holiday">
+    <End Role="Holiday" Type="LightSwitchApplication.Holiday" Multiplicity="1" />
+    <End Role="CountryHoliday" Type="LightSwitchApplication.CountryHoliday" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Holiday">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CountryHoliday">
+        <PropertyRef Name="CountryHoliday_Holiday" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectRate_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectRate" Type="LightSwitchApplication.ProjectRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectRate">
+        <PropertyRef Name="ProjectRate_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectRate_EmployeeTitle">
+    <End Role="EmployeeTitle" Type="LightSwitchApplication.EmployeeTitle" Multiplicity="1" />
+    <End Role="ProjectRate" Type="LightSwitchApplication.ProjectRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeTitle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectRate">
+        <PropertyRef Name="ProjectRate_EmployeeTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectFeature_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectFeature">
+        <PropertyRef Name="ProjectFeature_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectIncident_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectIncident">
+        <PropertyRef Name="ProjectIncident_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectFeature_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectFeature">
+        <PropertyRef Name="ProjectFeature_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectVpn_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectVpn" Type="LightSwitchApplication.ProjectVpn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectVpn">
+        <PropertyRef Name="ProjectVpn_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectEnvironment_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectEnvironment" Type="LightSwitchApplication.ProjectEnvironment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectEnvironment">
+        <PropertyRef Name="ProjectEnvironment_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectRule_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectRule" Type="LightSwitchApplication.ProjectRule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectRule">
+        <PropertyRef Name="ProjectRules_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeSkill_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="EmployeeSkill" Type="LightSwitchApplication.EmployeeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeSkill">
+        <PropertyRef Name="EmployeeSkill_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeSkill_Skill">
+    <End Role="Skill" Type="LightSwitchApplication.Skill" Multiplicity="1" />
+    <End Role="EmployeeSkill" Type="LightSwitchApplication.EmployeeSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeSkill">
+        <PropertyRef Name="EmployeeSkill_Skill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Skill_SkillCategory">
+    <End Role="SkillCategory" Type="LightSwitchApplication.SkillCategory" Multiplicity="1" />
+    <End Role="Skill" Type="LightSwitchApplication.Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Skill">
+        <PropertyRef Name="Skill_SkillCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectWebTool_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectWebTool" Type="LightSwitchApplication.ProjectWebTool" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectWebTool">
+        <PropertyRef Name="ProjectWebTool_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectIncident_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectIncident">
+        <PropertyRef Name="ProjectIncident_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectIncidentComment_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="ProjectIncidentComment" Type="LightSwitchApplication.ProjectIncidentComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectIncidentComment">
+        <PropertyRef Name="ProjectIncidentComment_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectFeatureComment_ProjectFeature">
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="1" />
+    <End Role="ProjectFeatureComment" Type="LightSwitchApplication.ProjectFeatureComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectFeatureComment">
+        <PropertyRef Name="ProjectFeatureComment_ProjectFeature" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectFeatureComment_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="ProjectFeatureComment" Type="LightSwitchApplication.ProjectFeatureComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectFeatureComment">
+        <PropertyRef Name="ProjectFeatureComment_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectIncidentComment_ProjectIncident">
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="1" />
+    <End Role="ProjectIncidentComment" Type="LightSwitchApplication.ProjectIncidentComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectIncident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectIncidentComment">
+        <PropertyRef Name="ProjectIncidentComment_ProjectIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Customer_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="0..1" />
+    <End Role="Customer" Type="LightSwitchApplication.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Customer_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Client_Project">
+    <End Role="Client" Type="LightSwitchApplication.Client" Multiplicity="1" />
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Client_Project1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeTracking_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="TimeTracking" Type="LightSwitchApplication.TimeTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTracking">
+        <PropertyRef Name="TimeTracking_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeTracking_ProjectIncident">
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="0..1" />
+    <End Role="TimeTracking" Type="LightSwitchApplication.TimeTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectIncident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTracking">
+        <PropertyRef Name="TimeTracking_ProjectIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeTracking_ProjectFeature">
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="0..1" />
+    <End Role="TimeTracking" Type="LightSwitchApplication.TimeTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTracking">
+        <PropertyRef Name="TimeTracking_ProjectFeature" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectTask_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="ProjectTask" Type="LightSwitchApplication.ProjectTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTask">
+        <PropertyRef Name="ProjectTask_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectTask_TimeTracking">
+    <End Role="ProjectTask" Type="LightSwitchApplication.ProjectTask" Multiplicity="0..1" />
+    <End Role="TimeTracking" Type="LightSwitchApplication.TimeTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTracking">
+        <PropertyRef Name="ProjectTask_TimeTracking" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectTaskComment_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="ProjectTaskComment" Type="LightSwitchApplication.ProjectTaskComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTaskComment">
+        <PropertyRef Name="ProjectTaskComment_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectTaskComment_ProjectTask">
+    <End Role="ProjectTask" Type="LightSwitchApplication.ProjectTask" Multiplicity="1" />
+    <End Role="ProjectTaskComment" Type="LightSwitchApplication.ProjectTaskComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTaskComment">
+        <PropertyRef Name="ProjectTaskComment_ProjectTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectTask_Project">
+    <End Role="Project" Type="LightSwitchApplication.Project" Multiplicity="1" />
+    <End Role="ProjectTask" Type="LightSwitchApplication.ProjectTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectTask">
+        <PropertyRef Name="ProjectTask_Project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TDDExtension_ProjectFeature">
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="0..1" />
+    <End Role="TDDExtension" Type="LightSwitchApplication.TDDExtension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TDDExtension">
+        <PropertyRef Name="TDDExtension_ProjectFeature" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TDDExtension_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="TDDExtension" Type="LightSwitchApplication.TDDExtension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TDDExtension">
+        <PropertyRef Name="TDDExtension_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TDDExtension_ProjectIncident">
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="0..1" />
+    <End Role="TDDExtension" Type="LightSwitchApplication.TDDExtension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectIncident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TDDExtension">
+        <PropertyRef Name="TDDExtension_ProjectIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectFeature_Employee1">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectFeature">
+        <PropertyRef Name="ProjectFeature_Employee1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectIncident_Employee1">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectIncident">
+        <PropertyRef Name="ProjectIncident_Employee1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Requirement_ProjectFeature">
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="0..1" />
+    <End Role="Requirement" Type="LightSwitchApplication.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="Requirement_ProjectFeature" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Requirement_ProjectIncident">
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="0..1" />
+    <End Role="Requirement" Type="LightSwitchApplication.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectIncident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="Requirement_ProjectIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Requirement_ProjectTask">
+    <End Role="ProjectTask" Type="LightSwitchApplication.ProjectTask" Multiplicity="0..1" />
+    <End Role="Requirement" Type="LightSwitchApplication.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="Requirement_ProjectTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Requirement_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="Requirement" Type="LightSwitchApplication.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="Requirement_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Issue_ProjectFeature">
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="0..1" />
+    <End Role="Issue" Type="LightSwitchApplication.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="Issue_ProjectFeature" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Issue_ProjectIncident">
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="0..1" />
+    <End Role="Issue" Type="LightSwitchApplication.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectIncident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="Issue_ProjectIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Issue_ProjectTask">
+    <End Role="ProjectTask" Type="LightSwitchApplication.ProjectTask" Multiplicity="0..1" />
+    <End Role="Issue" Type="LightSwitchApplication.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="Issue_ProjectTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Issue_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="Issue" Type="LightSwitchApplication.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="Issue_Employee1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Issue_Employee1">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="0..1" />
+    <End Role="Issue" Type="LightSwitchApplication.Issue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Issue">
+        <PropertyRef Name="Issue_Employee11" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeTrack_Employee">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="TimeTrack" Type="LightSwitchApplication.TimeTrack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTrack">
+        <PropertyRef Name="TimeTrack_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeTrack_Requirement">
+    <End Role="Requirement" Type="LightSwitchApplication.Requirement" Multiplicity="0..1" />
+    <End Role="TimeTrack" Type="LightSwitchApplication.TimeTrack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requirement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTrack">
+        <PropertyRef Name="TimeTrack_Requirement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeTrack_Issue">
+    <End Role="Issue" Type="LightSwitchApplication.Issue" Multiplicity="0..1" />
+    <End Role="TimeTrack" Type="LightSwitchApplication.TimeTrack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Issue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeTrack">
+        <PropertyRef Name="TimeTrack_Issue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TDDDetail_TDDObject">
+    <End Role="TDDObject" Type="LightSwitchApplication.TDDObject" Multiplicity="1" />
+    <End Role="TDDDetail" Type="LightSwitchApplication.TDDDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TDDObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TDDDetail">
+        <PropertyRef Name="TDDDetail_TDDObject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TDDObject_ProjectFeature">
+    <End Role="ProjectFeature" Type="LightSwitchApplication.ProjectFeature" Multiplicity="0..1" />
+    <End Role="TDDObject" Type="LightSwitchApplication.TDDObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TDDObject">
+        <PropertyRef Name="TDDObject_ProjectFeature" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TDDObject_ProjectIncident">
+    <End Role="ProjectIncident" Type="LightSwitchApplication.ProjectIncident" Multiplicity="0..1" />
+    <End Role="TDDObject" Type="LightSwitchApplication.TDDObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectIncident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TDDObject">
+        <PropertyRef Name="TDDObject_ProjectIncident" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TDDObject_ProjectTask">
+    <End Role="ProjectTask" Type="LightSwitchApplication.ProjectTask" Multiplicity="0..1" />
+    <End Role="TDDObject" Type="LightSwitchApplication.TDDObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TDDObject">
+        <PropertyRef Name="TDDObject_ProjectTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Department_Employee">
+    <End Role="Department" Type="LightSwitchApplication.Department" Multiplicity="0..1" />
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Department_Employee1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Employee_Department">
+    <End Role="Department" Type="LightSwitchApplication.Department" Multiplicity="1" />
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Employee_Department2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Employee_EmployeeTitle">
+    <End Role="EmployeeTitle" Type="LightSwitchApplication.EmployeeTitle" Multiplicity="1" />
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeTitle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Employee_EmployeeTitle3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeAssignment_EmployeeLevel">
+    <End Role="EmployeeLevel" Type="LightSwitchApplication.EmployeeLevel" Multiplicity="1" />
+    <End Role="EmployeeAssignment" Type="LightSwitchApplication.EmployeeAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeLevel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeAssignment">
+        <PropertyRef Name="EmployeeAssignment_EmployeeLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectRate_EmployeeLevel">
+    <End Role="EmployeeLevel" Type="LightSwitchApplication.EmployeeLevel" Multiplicity="1" />
+    <End Role="ProjectRate" Type="LightSwitchApplication.ProjectRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeLevel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectRate">
+        <PropertyRef Name="ProjectRate_EmployeeLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StaffingRequirement_EmployeeLevel">
+    <End Role="EmployeeLevel" Type="LightSwitchApplication.EmployeeLevel" Multiplicity="1" />
+    <End Role="StaffingRequirement" Type="LightSwitchApplication.StaffingRequirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeLevel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffingRequirement">
+        <PropertyRef Name="StaffingRequirement_EmployeeLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeTitle_EmployeeLevel">
+    <End Role="EmployeeLevel" Type="LightSwitchApplication.EmployeeLevel" Multiplicity="1" />
+    <End Role="EmployeeTitle" Type="LightSwitchApplication.EmployeeTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeLevel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeTitle">
+        <PropertyRef Name="EmployeeTitle_EmployeeLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EvaluationCriteria_Department">
+    <End Role="Department" Type="LightSwitchApplication.Department" Multiplicity="1" />
+    <End Role="EvaluationCriteria" Type="LightSwitchApplication.EvaluationCriteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationCriteria">
+        <PropertyRef Name="EvaluationCriteria_Department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EvaluationCriteria_EmployeeLevel">
+    <End Role="EmployeeLevel" Type="LightSwitchApplication.EmployeeLevel" Multiplicity="1" />
+    <End Role="EvaluationCriteria" Type="LightSwitchApplication.EvaluationCriteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeLevel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationCriteria">
+        <PropertyRef Name="EvaluationCriteria_EmployeeLevel1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReviewHeader_Employee2">
+    <End Role="Employee" Type="LightSwitchApplication.Employee" Multiplicity="1" />
+    <End Role="ReviewHeader" Type="LightSwitchApplication.ReviewHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReviewHeader">
+        <PropertyRef Name="ReviewHeader_Employee2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApplicationData" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="Projects" EntityType="LightSwitchApplication.Project" />
+    <EntitySet Name="StaffingRequirements" EntityType="LightSwitchApplication.StaffingRequirement" />
+    <EntitySet Name="Employees" EntityType="LightSwitchApplication.Employee" />
+    <EntitySet Name="EmployeeAssignments" EntityType="LightSwitchApplication.EmployeeAssignment" />
+    <EntitySet Name="TimeForecasts" EntityType="LightSwitchApplication.TimeForecast" />
+    <EntitySet Name="Holidays" EntityType="LightSwitchApplication.Holiday" />
+    <EntitySet Name="Announcements" EntityType="LightSwitchApplication.Announcement" />
+    <EntitySet Name="TimeForecastExceptionsSet" EntityType="LightSwitchApplication.TimeForecastExceptions" />
+    <EntitySet Name="EvaluationCriterias" EntityType="LightSwitchApplication.EvaluationCriteria" />
+    <EntitySet Name="ReviewHeaders" EntityType="LightSwitchApplication.ReviewHeader" />
+    <EntitySet Name="ReviewCritierias" EntityType="LightSwitchApplication.ReviewCritieria" />
+    <EntitySet Name="Signatures" EntityType="LightSwitchApplication.Signature" />
+    <EntitySet Name="TrainingCoursesSet" EntityType="LightSwitchApplication.TrainingCourses" />
+    <EntitySet Name="TrainingPlans" EntityType="LightSwitchApplication.TrainingPlan" />
+    <EntitySet Name="Countries" EntityType="LightSwitchApplication.Country" />
+    <EntitySet Name="CountryHolidays" EntityType="LightSwitchApplication.CountryHoliday" />
+    <EntitySet Name="ProjectRates" EntityType="LightSwitchApplication.ProjectRate" />
+    <EntitySet Name="EmployeeTitles" EntityType="LightSwitchApplication.EmployeeTitle" />
+    <EntitySet Name="Configurations" EntityType="LightSwitchApplication.Configuration" />
+    <EntitySet Name="ProjectVpns" EntityType="LightSwitchApplication.ProjectVpn" />
+    <EntitySet Name="ProjectFeatures" EntityType="LightSwitchApplication.ProjectFeature" />
+    <EntitySet Name="ProjectIncidents" EntityType="LightSwitchApplication.ProjectIncident" />
+    <EntitySet Name="ProjectEnvironments" EntityType="LightSwitchApplication.ProjectEnvironment" />
+    <EntitySet Name="ProjectRules" EntityType="LightSwitchApplication.ProjectRule" />
+    <EntitySet Name="Skills" EntityType="LightSwitchApplication.Skill" />
+    <EntitySet Name="EmployeeSkills" EntityType="LightSwitchApplication.EmployeeSkill" />
+    <EntitySet Name="SkillCategories" EntityType="LightSwitchApplication.SkillCategory" />
+    <EntitySet Name="ProjectWebTools" EntityType="LightSwitchApplication.ProjectWebTool" />
+    <EntitySet Name="ProjectFeatureComments" EntityType="LightSwitchApplication.ProjectFeatureComment" />
+    <EntitySet Name="ProjectIncidentComments" EntityType="LightSwitchApplication.ProjectIncidentComment" />
+    <EntitySet Name="Customers" EntityType="LightSwitchApplication.Customer" />
+    <EntitySet Name="Clients" EntityType="LightSwitchApplication.Client" />
+    <EntitySet Name="TimeTrackings" EntityType="LightSwitchApplication.TimeTracking" />
+    <EntitySet Name="ProjectTasks" EntityType="LightSwitchApplication.ProjectTask" />
+    <EntitySet Name="ProjectTaskComments" EntityType="LightSwitchApplication.ProjectTaskComment" />
+    <EntitySet Name="TDDExtensions" EntityType="LightSwitchApplication.TDDExtension" />
+    <EntitySet Name="Requirements" EntityType="LightSwitchApplication.Requirement" />
+    <EntitySet Name="Issues" EntityType="LightSwitchApplication.Issue" />
+    <EntitySet Name="TimeTracks" EntityType="LightSwitchApplication.TimeTrack" />
+    <EntitySet Name="TDDObjects" EntityType="LightSwitchApplication.TDDObject" />
+    <EntitySet Name="TDDDetails" EntityType="LightSwitchApplication.TDDDetail" />
+    <EntitySet Name="Departments" EntityType="LightSwitchApplication.Department" />
+    <EntitySet Name="EmployeeLevels" EntityType="LightSwitchApplication.EmployeeLevel" />
+    <AssociationSet Name="StaffingRequirement_Project" Association="LightSwitchApplication.StaffingRequirement_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="StaffingRequirement" EntitySet="StaffingRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeAssignment_Project" Association="LightSwitchApplication.EmployeeAssignment_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="EmployeeAssignment" EntitySet="EmployeeAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeAssignment_Employee" Association="LightSwitchApplication.EmployeeAssignment_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeAssignment" EntitySet="EmployeeAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Employee" Association="LightSwitchApplication.Project_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Employee1" Association="LightSwitchApplication.Project_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="TimeForecast_Project" Association="LightSwitchApplication.TimeForecast_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="TimeForecast" EntitySet="TimeForecasts" />
+    </AssociationSet>
+    <AssociationSet Name="TimeForecast_Employee" Association="LightSwitchApplication.TimeForecast_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="TimeForecast" EntitySet="TimeForecasts" />
+    </AssociationSet>
+    <AssociationSet Name="TimeForecastExceptions_Project" Association="LightSwitchApplication.TimeForecastExceptions_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="TimeForecastExceptions" EntitySet="TimeForecastExceptionsSet" />
+    </AssociationSet>
+    <AssociationSet Name="TimeForecastExceptions_Employee" Association="LightSwitchApplication.TimeForecastExceptions_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="TimeForecastExceptions" EntitySet="TimeForecastExceptionsSet" />
+    </AssociationSet>
+    <AssociationSet Name="ReviewHeader_Employee" Association="LightSwitchApplication.ReviewHeader_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ReviewHeader" EntitySet="ReviewHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="ReviewHeader_Employee1" Association="LightSwitchApplication.ReviewHeader_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ReviewHeader" EntitySet="ReviewHeaders" />
+    </AssociationSet>
+    <AssociationSet Name="ReviewCritieria_ReviewHeader" Association="LightSwitchApplication.ReviewCritieria_ReviewHeader">
+      <End Role="ReviewHeader" EntitySet="ReviewHeaders" />
+      <End Role="ReviewCritieria" EntitySet="ReviewCritierias" />
+    </AssociationSet>
+    <AssociationSet Name="Employee_Employee" Association="LightSwitchApplication.Employee_Employee">
+      <End Role="Employee1" EntitySet="Employees" />
+      <End Role="Employee2" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="Signature_Employee" Association="LightSwitchApplication.Signature_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Signature" EntitySet="Signatures" />
+    </AssociationSet>
+    <AssociationSet Name="Signature_ReviewHeader" Association="LightSwitchApplication.Signature_ReviewHeader">
+      <End Role="ReviewHeader" EntitySet="ReviewHeaders" />
+      <End Role="Signature" EntitySet="Signatures" />
+    </AssociationSet>
+    <AssociationSet Name="TrainingPlan_ReviewHeader" Association="LightSwitchApplication.TrainingPlan_ReviewHeader">
+      <End Role="ReviewHeader" EntitySet="ReviewHeaders" />
+      <End Role="TrainingPlan" EntitySet="TrainingPlans" />
+    </AssociationSet>
+    <AssociationSet Name="TrainingPlan_TrainingCourses" Association="LightSwitchApplication.TrainingPlan_TrainingCourses">
+      <End Role="TrainingCourses" EntitySet="TrainingCoursesSet" />
+      <End Role="TrainingPlan" EntitySet="TrainingPlans" />
+    </AssociationSet>
+    <AssociationSet Name="Country_Employee" Association="LightSwitchApplication.Country_Employee">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="CountryHoliday_Country" Association="LightSwitchApplication.CountryHoliday_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="CountryHoliday" EntitySet="CountryHolidays" />
+    </AssociationSet>
+    <AssociationSet Name="CountryHoliday_Holiday" Association="LightSwitchApplication.CountryHoliday_Holiday">
+      <End Role="Holiday" EntitySet="Holidays" />
+      <End Role="CountryHoliday" EntitySet="CountryHolidays" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectRate_Project" Association="LightSwitchApplication.ProjectRate_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectRate" EntitySet="ProjectRates" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectRate_EmployeeTitle" Association="LightSwitchApplication.ProjectRate_EmployeeTitle">
+      <End Role="EmployeeTitle" EntitySet="EmployeeTitles" />
+      <End Role="ProjectRate" EntitySet="ProjectRates" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectFeature_Employee" Association="LightSwitchApplication.ProjectFeature_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectIncident_Project" Association="LightSwitchApplication.ProjectIncident_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectFeature_Project" Association="LightSwitchApplication.ProjectFeature_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectVpn_Project" Association="LightSwitchApplication.ProjectVpn_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectVpn" EntitySet="ProjectVpns" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectEnvironment_Project" Association="LightSwitchApplication.ProjectEnvironment_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectEnvironment" EntitySet="ProjectEnvironments" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectRule_Project" Association="LightSwitchApplication.ProjectRule_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectRule" EntitySet="ProjectRules" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeSkill_Employee" Association="LightSwitchApplication.EmployeeSkill_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeSkill" EntitySet="EmployeeSkills" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeSkill_Skill" Association="LightSwitchApplication.EmployeeSkill_Skill">
+      <End Role="Skill" EntitySet="Skills" />
+      <End Role="EmployeeSkill" EntitySet="EmployeeSkills" />
+    </AssociationSet>
+    <AssociationSet Name="Skill_SkillCategory" Association="LightSwitchApplication.Skill_SkillCategory">
+      <End Role="SkillCategory" EntitySet="SkillCategories" />
+      <End Role="Skill" EntitySet="Skills" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectWebTool_Project" Association="LightSwitchApplication.ProjectWebTool_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectWebTool" EntitySet="ProjectWebTools" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectIncident_Employee" Association="LightSwitchApplication.ProjectIncident_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectIncidentComment_Employee" Association="LightSwitchApplication.ProjectIncidentComment_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectIncidentComment" EntitySet="ProjectIncidentComments" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectFeatureComment_ProjectFeature" Association="LightSwitchApplication.ProjectFeatureComment_ProjectFeature">
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+      <End Role="ProjectFeatureComment" EntitySet="ProjectFeatureComments" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectFeatureComment_Employee" Association="LightSwitchApplication.ProjectFeatureComment_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectFeatureComment" EntitySet="ProjectFeatureComments" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectIncidentComment_ProjectIncident" Association="LightSwitchApplication.ProjectIncidentComment_ProjectIncident">
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+      <End Role="ProjectIncidentComment" EntitySet="ProjectIncidentComments" />
+    </AssociationSet>
+    <AssociationSet Name="Customer_Project" Association="LightSwitchApplication.Customer_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="Client_Project" Association="LightSwitchApplication.Client_Project">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="TimeTracking_Employee" Association="LightSwitchApplication.TimeTracking_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="TimeTracking" EntitySet="TimeTrackings" />
+    </AssociationSet>
+    <AssociationSet Name="TimeTracking_ProjectIncident" Association="LightSwitchApplication.TimeTracking_ProjectIncident">
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+      <End Role="TimeTracking" EntitySet="TimeTrackings" />
+    </AssociationSet>
+    <AssociationSet Name="TimeTracking_ProjectFeature" Association="LightSwitchApplication.TimeTracking_ProjectFeature">
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+      <End Role="TimeTracking" EntitySet="TimeTrackings" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectTask_Employee" Association="LightSwitchApplication.ProjectTask_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectTask" EntitySet="ProjectTasks" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectTask_TimeTracking" Association="LightSwitchApplication.ProjectTask_TimeTracking">
+      <End Role="ProjectTask" EntitySet="ProjectTasks" />
+      <End Role="TimeTracking" EntitySet="TimeTrackings" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectTaskComment_Employee" Association="LightSwitchApplication.ProjectTaskComment_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectTaskComment" EntitySet="ProjectTaskComments" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectTaskComment_ProjectTask" Association="LightSwitchApplication.ProjectTaskComment_ProjectTask">
+      <End Role="ProjectTask" EntitySet="ProjectTasks" />
+      <End Role="ProjectTaskComment" EntitySet="ProjectTaskComments" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectTask_Project" Association="LightSwitchApplication.ProjectTask_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectTask" EntitySet="ProjectTasks" />
+    </AssociationSet>
+    <AssociationSet Name="TDDExtension_ProjectFeature" Association="LightSwitchApplication.TDDExtension_ProjectFeature">
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+      <End Role="TDDExtension" EntitySet="TDDExtensions" />
+    </AssociationSet>
+    <AssociationSet Name="TDDExtension_Employee" Association="LightSwitchApplication.TDDExtension_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="TDDExtension" EntitySet="TDDExtensions" />
+    </AssociationSet>
+    <AssociationSet Name="TDDExtension_ProjectIncident" Association="LightSwitchApplication.TDDExtension_ProjectIncident">
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+      <End Role="TDDExtension" EntitySet="TDDExtensions" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectFeature_Employee1" Association="LightSwitchApplication.ProjectFeature_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectIncident_Employee1" Association="LightSwitchApplication.ProjectIncident_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+    </AssociationSet>
+    <AssociationSet Name="Requirement_ProjectFeature" Association="LightSwitchApplication.Requirement_ProjectFeature">
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+      <End Role="Requirement" EntitySet="Requirements" />
+    </AssociationSet>
+    <AssociationSet Name="Requirement_ProjectIncident" Association="LightSwitchApplication.Requirement_ProjectIncident">
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+      <End Role="Requirement" EntitySet="Requirements" />
+    </AssociationSet>
+    <AssociationSet Name="Requirement_ProjectTask" Association="LightSwitchApplication.Requirement_ProjectTask">
+      <End Role="ProjectTask" EntitySet="ProjectTasks" />
+      <End Role="Requirement" EntitySet="Requirements" />
+    </AssociationSet>
+    <AssociationSet Name="Requirement_Employee" Association="LightSwitchApplication.Requirement_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Requirement" EntitySet="Requirements" />
+    </AssociationSet>
+    <AssociationSet Name="Issue_ProjectFeature" Association="LightSwitchApplication.Issue_ProjectFeature">
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="Issue_ProjectIncident" Association="LightSwitchApplication.Issue_ProjectIncident">
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="Issue_ProjectTask" Association="LightSwitchApplication.Issue_ProjectTask">
+      <End Role="ProjectTask" EntitySet="ProjectTasks" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="Issue_Employee" Association="LightSwitchApplication.Issue_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="Issue_Employee1" Association="LightSwitchApplication.Issue_Employee1">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Issue" EntitySet="Issues" />
+    </AssociationSet>
+    <AssociationSet Name="TimeTrack_Employee" Association="LightSwitchApplication.TimeTrack_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="TimeTrack" EntitySet="TimeTracks" />
+    </AssociationSet>
+    <AssociationSet Name="TimeTrack_Requirement" Association="LightSwitchApplication.TimeTrack_Requirement">
+      <End Role="Requirement" EntitySet="Requirements" />
+      <End Role="TimeTrack" EntitySet="TimeTracks" />
+    </AssociationSet>
+    <AssociationSet Name="TimeTrack_Issue" Association="LightSwitchApplication.TimeTrack_Issue">
+      <End Role="Issue" EntitySet="Issues" />
+      <End Role="TimeTrack" EntitySet="TimeTracks" />
+    </AssociationSet>
+    <AssociationSet Name="TDDDetail_TDDObject" Association="LightSwitchApplication.TDDDetail_TDDObject">
+      <End Role="TDDObject" EntitySet="TDDObjects" />
+      <End Role="TDDDetail" EntitySet="TDDDetails" />
+    </AssociationSet>
+    <AssociationSet Name="TDDObject_ProjectFeature" Association="LightSwitchApplication.TDDObject_ProjectFeature">
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+      <End Role="TDDObject" EntitySet="TDDObjects" />
+    </AssociationSet>
+    <AssociationSet Name="TDDObject_ProjectIncident" Association="LightSwitchApplication.TDDObject_ProjectIncident">
+      <End Role="ProjectIncident" EntitySet="ProjectIncidents" />
+      <End Role="TDDObject" EntitySet="TDDObjects" />
+    </AssociationSet>
+    <AssociationSet Name="TDDObject_ProjectTask" Association="LightSwitchApplication.TDDObject_ProjectTask">
+      <End Role="ProjectTask" EntitySet="ProjectTasks" />
+      <End Role="TDDObject" EntitySet="TDDObjects" />
+    </AssociationSet>
+    <AssociationSet Name="Department_Employee" Association="LightSwitchApplication.Department_Employee">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="Employee_Department" Association="LightSwitchApplication.Employee_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="Employee_EmployeeTitle" Association="LightSwitchApplication.Employee_EmployeeTitle">
+      <End Role="EmployeeTitle" EntitySet="EmployeeTitles" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeAssignment_EmployeeLevel" Association="LightSwitchApplication.EmployeeAssignment_EmployeeLevel">
+      <End Role="EmployeeLevel" EntitySet="EmployeeLevels" />
+      <End Role="EmployeeAssignment" EntitySet="EmployeeAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectRate_EmployeeLevel" Association="LightSwitchApplication.ProjectRate_EmployeeLevel">
+      <End Role="EmployeeLevel" EntitySet="EmployeeLevels" />
+      <End Role="ProjectRate" EntitySet="ProjectRates" />
+    </AssociationSet>
+    <AssociationSet Name="StaffingRequirement_EmployeeLevel" Association="LightSwitchApplication.StaffingRequirement_EmployeeLevel">
+      <End Role="EmployeeLevel" EntitySet="EmployeeLevels" />
+      <End Role="StaffingRequirement" EntitySet="StaffingRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeTitle_EmployeeLevel" Association="LightSwitchApplication.EmployeeTitle_EmployeeLevel">
+      <End Role="EmployeeLevel" EntitySet="EmployeeLevels" />
+      <End Role="EmployeeTitle" EntitySet="EmployeeTitles" />
+    </AssociationSet>
+    <AssociationSet Name="EvaluationCriteria_Department" Association="LightSwitchApplication.EvaluationCriteria_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="EvaluationCriteria" EntitySet="EvaluationCriterias" />
+    </AssociationSet>
+    <AssociationSet Name="EvaluationCriteria_EmployeeLevel" Association="LightSwitchApplication.EvaluationCriteria_EmployeeLevel">
+      <End Role="EmployeeLevel" EntitySet="EmployeeLevels" />
+      <End Role="EvaluationCriteria" EntitySet="EvaluationCriterias" />
+    </AssociationSet>
+    <AssociationSet Name="ReviewHeader_Employee2" Association="LightSwitchApplication.ReviewHeader_Employee2">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ReviewHeader" EntitySet="ReviewHeaders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

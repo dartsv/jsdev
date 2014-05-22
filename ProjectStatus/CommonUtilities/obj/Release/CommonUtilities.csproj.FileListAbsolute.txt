@@ -1,0 +1,5 @@
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\bin\Release\CommonUtilities.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\bin\Release\CommonUtilities.pdb
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\obj\Release\CommonUtilities.dll
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\obj\Release\CommonUtilities.pdb
+D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\obj\Release\CommonUtilities.csprojResolveAssemblyReference.cache

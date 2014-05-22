@@ -1,0 +1,5669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModelFragment xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <Module
+    Name="LightSwitchCommonModule">
+    <Module.Attributes>
+      <ModuleNamespace
+        Namespace="LightSwitchApplication" />
+      <AutomaticDisplayName
+        Expression="(\p{Ll})(\p{Lu})|_+"
+        Replacement="$1 $2" />
+    </Module.Attributes>
+  </Module>
+  <EntityContainerGroup
+    Name="DataWorkspace">
+    <EntityContainerGroupProperty
+      EntityContainer="Microsoft.LightSwitch.Security:SecurityData"
+      Name="SecurityData">
+      <EntityContainerGroupProperty.Attributes>
+        <Generated />
+        <DisplayName
+          Value="Security Data" />
+        <Description
+          Value="Service that provides access to security-related data." />
+      </EntityContainerGroupProperty.Attributes>
+    </EntityContainerGroupProperty>
+    <EntityContainerGroupProperty
+      EntityContainer="ApplicationData"
+      Name="ApplicationData" />
+    <EntityContainerGroupProperty
+      EntityContainer="ProjectStatus_RIA_ServiceData"
+      Name="ProjectStatus_RIA_ServiceData" />
+  </EntityContainerGroup>
+  <Association
+    Name="StaffingRequirement_Project">
+    <AssociationEnd
+      EntityType="StaffingRequirement"
+      Multiplicity="Many"
+      Name="StaffingRequirement" />
+    <AssociationEnd
+      EntityType="Project"
+      Multiplicity="One"
+      Name="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="EmployeeAssignment_Project">
+    <AssociationEnd
+      EntityType="EmployeeAssignment"
+      Multiplicity="Many"
+      Name="EmployeeAssignment" />
+    <AssociationEnd
+      EntityType="Project"
+      Multiplicity="One"
+      Name="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="EmployeeAssignment_Employee">
+    <AssociationEnd
+      EntityType="EmployeeAssignment"
+      Multiplicity="Many"
+      Name="EmployeeAssignment" />
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="One"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Project_Employee">
+    <AssociationEnd
+      EntityType="Project"
+      Multiplicity="Many"
+      Name="Project" />
+    <AssociationEnd
+      EntityType="Employee"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Project_Employee1">
+    <AssociationEnd
+      EntityType="Project"
+      Multiplicity="Many"
+      Name="Project" />
+    <AssociationEnd
+      EntityType="Employee"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="TimeForecast_Project">
+    <AssociationEnd
+      EntityType="TimeForecast"
+      Multiplicity="Many"
+      Name="TimeForecast" />
+    <AssociationEnd
+      EntityType="Project"
+      Multiplicity="One"
+      Name="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <EntityContainer
+    IsIntrinsic="True"
+    Name="ApplicationData">
+    <SubmitOperation
+      Name="SaveChanges" />
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Project"
+      Name="Projects" />
+    <QueryOperation
+      Name="Projects_Single"
+      ReturnType="Project">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Projects" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Projects_SingleOrDefault"
+      ReturnType="Project">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Projects" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="StaffingRequirement"
+      Name="StaffingRequirements" />
+    <QueryOperation
+      Name="StaffingRequirements_Single"
+      ReturnType="StaffingRequirement">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="StaffingRequirements" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="StaffingRequirements_SingleOrDefault"
+      ReturnType="StaffingRequirement">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="StaffingRequirements" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="StaffingRequirement_Project"
+      Name="StaffingRequirement_Projects">
+      <AssociationSetEnd
+        EntitySet="StaffingRequirements"
+        Name="StaffingRequirement" />
+      <AssociationSetEnd
+        EntitySet="Projects"
+        Name="Project" />
+    </AssociationSet>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Employee"
+      Name="Employees" />
+    <QueryOperation
+      Name="Employees_Single"
+      ReturnType="Employee">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Employees" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+          <DisplayName
+            Value="email name" />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Employees_SingleOrDefault"
+      ReturnType="Employee">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Employees" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+          <DisplayName
+            Value="email name" />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="EmployeeAssignment"
+      Name="EmployeeAssignments" />
+    <QueryOperation
+      Name="EmployeeAssignments_Single"
+      ReturnType="EmployeeAssignment">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="EmployeeAssignments" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="EmployeeAssignments_SingleOrDefault"
+      ReturnType="EmployeeAssignment">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="EmployeeAssignments" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="EmployeeAssignment_Project"
+      Name="EmployeeAssignment_Projects">
+      <AssociationSetEnd
+        EntitySet="EmployeeAssignments"
+        Name="EmployeeAssignment" />
+      <AssociationSetEnd
+        EntitySet="Projects"
+        Name="Project" />
+    </AssociationSet>
+    <AssociationSet
+      Association="EmployeeAssignment_Employee"
+      Name="EmployeeAssignment_Employees">
+      <AssociationSetEnd
+        EntitySet="EmployeeAssignments"
+        Name="EmployeeAssignment" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <AssociationSet
+      Association="Project_Employee"
+      Name="Project_Employees">
+      <AssociationSetEnd
+        EntitySet="Projects"
+        Name="Project" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <AssociationSet
+      Association="Project_Employee1"
+      Name="Project_Employee1Set">
+      <AssociationSetEnd
+        EntitySet="Projects"
+        Name="Project" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="TimeForecast"
+      Name="TimeForecasts" />
+    <QueryOperation
+      Name="TimeForecasts_Single"
+      ReturnType="TimeForecast">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TimeForecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="TimeForecasts_SingleOrDefault"
+      ReturnType="TimeForecast">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TimeForecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="TimeForecast_Project"
+      Name="TimeForecast_Projects">
+      <AssociationSetEnd
+        EntitySet="TimeForecasts"
+        Name="TimeForecast" />
+      <AssociationSetEnd
+        EntitySet="Projects"
+        Name="Project" />
+    </AssociationSet>
+    <AssociationSet
+      Association="TimeForecast_Employee"
+      Name="TimeForecast_Employees">
+      <AssociationSetEnd
+        EntitySet="TimeForecasts"
+        Name="TimeForecast" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <QueryOperation
+      Name="EmployeeAssignmentsByName"
+      ReturnType="EmployeeAssignment*">
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree />
+      </QueryOperation.FilterExpression>
+      <QueryOperation.SortCriteria>
+        <SortCriterion>
+          <ChainExpression>
+            <MemberExpression
+              Member="Chargeable" />
+          </ChainExpression>
+        </SortCriterion>
+      </QueryOperation.SortCriteria>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="EmployeeAssignments" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+    </QueryOperation>
+    <QueryOperation
+      Name="ProjectExceptions"
+      ReturnType="Project*">
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ForecastException" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ConstantExpression
+                ResultType=":Boolean"
+                Value="True" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.SortCriteria>
+        <SortCriterion>
+          <ChainExpression>
+            <MemberExpression
+              Member="ProjectName" />
+          </ChainExpression>
+        </SortCriterion>
+      </QueryOperation.SortCriteria>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Projects" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+    </QueryOperation>
+    <QueryOperation
+      Name="ProjectAssignments"
+      ReturnType="Project*">
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <UnaryExpression
+            NodeType="Not">
+            <BinaryExpression
+              NodeType="Equal">
+              <BinaryExpression.Left>
+                <ChainExpression>
+                  <MemberExpression
+                    Member="ForecastException" />
+                </ChainExpression>
+              </BinaryExpression.Left>
+              <BinaryExpression.Right>
+                <ConstantExpression
+                  ResultType=":Boolean"
+                  Value="True" />
+              </BinaryExpression.Right>
+            </BinaryExpression>
+          </UnaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.SortCriteria>
+        <SortCriterion>
+          <ChainExpression>
+            <MemberExpression
+              Member="ProjectName" />
+          </ChainExpression>
+        </SortCriterion>
+      </QueryOperation.SortCriteria>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Projects" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Holiday"
+      Name="Holidays" />
+    <QueryOperation
+      Name="Holidays_Single"
+      ReturnType="Holiday">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Holidays" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Holidays_SingleOrDefault"
+      ReturnType="Holiday">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Holidays" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Announcements"
+      Name="AnnouncementsSet" />
+    <QueryOperation
+      Name="AnnouncementsSet_Single"
+      ReturnType="Announcements">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="AnnouncementsSet" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="AnnouncementsSet_SingleOrDefault"
+      ReturnType="Announcements">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="AnnouncementsSet" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="TimeForecastExceptions"
+      ReturnType="TimeForecast*">
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Project1" />
+                <MemberExpression
+                  Member="ForecastException" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ConstantExpression
+                ResultType=":Boolean"
+                Value="True" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TimeForecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="TimeForecastExceptions"
+      Name="TimeForecastExceptionsSet" />
+    <QueryOperation
+      Name="TimeForecastExceptionsSet_Single"
+      ReturnType="TimeForecastExceptions">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TimeForecastExceptionsSet" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="TimeForecastExceptionsSet_SingleOrDefault"
+      ReturnType="TimeForecastExceptions">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TimeForecastExceptionsSet" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="TimeForecastExceptions_Project"
+      Name="TimeForecastExceptions_Projects">
+      <AssociationSetEnd
+        EntitySet="TimeForecastExceptionsSet"
+        Name="TimeForecastExceptions" />
+      <AssociationSetEnd
+        EntitySet="Projects"
+        Name="Project" />
+    </AssociationSet>
+    <AssociationSet
+      Association="TimeForecastExceptions_Employee"
+      Name="TimeForecastExceptions_Employees">
+      <AssociationSetEnd
+        EntitySet="TimeForecastExceptionsSet"
+        Name="TimeForecastExceptions" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="EvaluationCriteria"
+      Name="EvaluationCriterias" />
+    <QueryOperation
+      Name="EvaluationCriterias_Single"
+      ReturnType="EvaluationCriteria">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="EvaluationCriterias" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="EvaluationCriterias_SingleOrDefault"
+      ReturnType="EvaluationCriteria">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="EvaluationCriterias" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="ReviewHeader"
+      Name="ReviewHeaders" />
+    <QueryOperation
+      Name="ReviewHeaders_Single"
+      ReturnType="ReviewHeader">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="ReviewHeaders" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="ReviewHeaders_SingleOrDefault"
+      ReturnType="ReviewHeader">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="IdProperty" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="ReviewHeaders" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="IdProperty"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="ReviewHeader_Employee"
+      Name="ReviewHeader_Employees">
+      <AssociationSetEnd
+        EntitySet="ReviewHeaders"
+        Name="ReviewHeader" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <AssociationSet
+      Association="ReviewHeader_Employee1"
+      Name="ReviewHeader_Employee1Set">
+      <AssociationSetEnd
+        EntitySet="ReviewHeaders"
+        Name="ReviewHeader" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="ReviewCritieria"
+      Name="ReviewCritierias" />
+    <QueryOperation
+      Name="ReviewCritierias_Single"
+      ReturnType="ReviewCritieria">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="ReviewCritierias" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="ReviewCritierias_SingleOrDefault"
+      ReturnType="ReviewCritieria">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="ReviewCritierias" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="ReviewCritieria_ReviewHeader"
+      Name="ReviewCritieria_ReviewHeaders">
+      <AssociationSetEnd
+        EntitySet="ReviewCritierias"
+        Name="ReviewCritieria" />
+      <AssociationSetEnd
+        EntitySet="ReviewHeaders"
+        Name="ReviewHeader" />
+    </AssociationSet>
+    <AssociationSet
+      Association="Employee_Employee"
+      Name="Employee_Employees">
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee1" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee2" />
+    </AssociationSet>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Signature"
+      Name="Signatures" />
+    <QueryOperation
+      Name="Signatures_Single"
+      ReturnType="Signature">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Signatures" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Signatures_SingleOrDefault"
+      ReturnType="Signature">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Signatures" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="Signature_Employee"
+      Name="Signature_Employees">
+      <AssociationSetEnd
+        EntitySet="Signatures"
+        Name="Signature" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <AssociationSet
+      Association="Signature_ReviewHeader"
+      Name="Signature_ReviewHeaders">
+      <AssociationSetEnd
+        EntitySet="Signatures"
+        Name="Signature" />
+      <AssociationSetEnd
+        EntitySet="ReviewHeaders"
+        Name="ReviewHeader" />
+    </AssociationSet>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="TrainingCourses"
+      Name="TrainingCoursesSet" />
+    <QueryOperation
+      Name="TrainingCoursesSet_Single"
+      ReturnType="TrainingCourses">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TrainingCoursesSet" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="TrainingCoursesSet_SingleOrDefault"
+      ReturnType="TrainingCourses">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TrainingCoursesSet" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="TrainingPlan"
+      Name="TrainingPlans" />
+    <QueryOperation
+      Name="TrainingPlans_Single"
+      ReturnType="TrainingPlan">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TrainingPlans" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="TrainingPlans_SingleOrDefault"
+      ReturnType="TrainingPlan">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="TrainingPlans" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="TrainingPlan_ReviewHeader"
+      Name="TrainingPlan_ReviewHeaders">
+      <AssociationSetEnd
+        EntitySet="TrainingPlans"
+        Name="TrainingPlan" />
+      <AssociationSetEnd
+        EntitySet="ReviewHeaders"
+        Name="ReviewHeader" />
+    </AssociationSet>
+    <AssociationSet
+      Association="TrainingPlan_TrainingCourses"
+      Name="TrainingPlan_TrainingCoursesSet">
+      <AssociationSetEnd
+        EntitySet="TrainingPlans"
+        Name="TrainingPlan" />
+      <AssociationSetEnd
+        EntitySet="TrainingCoursesSet"
+        Name="TrainingCourses" />
+    </AssociationSet>
+    <QueryOperation
+      Name="FilterReviews"
+      ReturnType="ReviewHeader*">
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree />
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="ReviewHeaders" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="FilterTerm"
+        ParameterType=":String?" />
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="Country"
+      Name="Countries" />
+    <QueryOperation
+      Name="Countries_Single"
+      ReturnType="Country">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Devuelve la entidad cuya identidad especifican el o los parámetros." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Countries" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Valor de la propiedad clave 'Id' de la entidad que se va a recuperar." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Countries_SingleOrDefault"
+      ReturnType="Country">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Devuelve la entidad cuya identidad se especifica en el o los parámetros, o NULL si la entidad no existe." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Countries" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Valor de la propiedad clave 'Id' de la entidad que se va a recuperar." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="Country_Employee"
+      Name="Country_Employees">
+      <AssociationSetEnd
+        EntitySet="Countries"
+        Name="Country" />
+      <AssociationSetEnd
+        EntitySet="Employees"
+        Name="Employee" />
+    </AssociationSet>
+    <QueryOperation
+      Name="EmployeesLookup"
+      ReturnType="Employee*">
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="And">
+            <BinaryExpression.Left>
+              <BinaryExpression
+                NodeType="And">
+                <BinaryExpression.Left>
+                  <BinaryExpression
+                    NodeType="Equal">
+                    <BinaryExpression.Left>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Country" />
+                        <MemberExpression
+                          Member="Id" />
+                      </ChainExpression>
+                    </BinaryExpression.Left>
+                    <BinaryExpression.Right>
+                      <ParameterExpression
+                        Parameter="Country" />
+                    </BinaryExpression.Right>
+                  </BinaryExpression>
+                </BinaryExpression.Left>
+                <BinaryExpression.Right>
+                  <BinaryExpression
+                    NodeType="Contains">
+                    <BinaryExpression.Left>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="Department" />
+                      </ChainExpression>
+                    </BinaryExpression.Left>
+                    <BinaryExpression.Right>
+                      <ParameterExpression
+                        Parameter="Department" />
+                    </BinaryExpression.Right>
+                  </BinaryExpression>
+                </BinaryExpression.Right>
+              </BinaryExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <BinaryExpression
+                NodeType="Contains">
+                <BinaryExpression.Left>
+                  <ChainExpression>
+                    <MemberExpression
+                      Member="Title" />
+                  </ChainExpression>
+                </BinaryExpression.Left>
+                <BinaryExpression.Right>
+                  <ParameterExpression
+                    Parameter="Title" />
+                </BinaryExpression.Right>
+              </BinaryExpression>
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.SortCriteria>
+        <SortCriterion>
+          <ChainExpression>
+            <MemberExpression
+              Member="Department" />
+          </ChainExpression>
+        </SortCriterion>
+        <SortCriterion
+          Direction="Descending">
+          <ChainExpression>
+            <MemberExpression
+              Member="Country" />
+            <MemberExpression
+              Member="Name" />
+          </ChainExpression>
+        </SortCriterion>
+        <SortCriterion>
+          <ChainExpression>
+            <MemberExpression
+              Member="Title" />
+          </ChainExpression>
+        </SortCriterion>
+        <SortCriterion>
+          <ChainExpression>
+            <MemberExpression
+              Member="FirstName" />
+          </ChainExpression>
+        </SortCriterion>
+        <SortCriterion>
+          <ChainExpression>
+            <MemberExpression
+              Member="LastName" />
+          </ChainExpression>
+        </SortCriterion>
+      </QueryOperation.SortCriteria>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Employees" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        IsOptional="True"
+        Name="Country"
+        ParameterType=":Int32?" />
+      <QueryOperationParameter
+        IsOptional="True"
+        Name="Department"
+        ParameterType=":String?" />
+      <QueryOperationParameter
+        IsOptional="True"
+        Name="Title"
+        ParameterType=":String?" />
+    </QueryOperation>
+    <EntitySet
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="CountryHoliday"
+      Name="CountryHolidays" />
+    <QueryOperation
+      Name="CountryHolidays_Single"
+      ReturnType="CountryHoliday">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Devuelve la entidad cuya identidad especifican el o los parámetros." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="CountryHolidays" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Valor de la propiedad clave 'Id' de la entidad que se va a recuperar." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="CountryHolidays_SingleOrDefault"
+      ReturnType="CountryHoliday">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Devuelve la entidad cuya identidad se especifica en el o los parámetros, o NULL si la entidad no existe." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="CountryHolidays" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="Valor de la propiedad clave 'Id' de la entidad que se va a recuperar." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Association="CountryHoliday_Country"
+      Name="CountryHoliday_CountrySet">
+      <AssociationSetEnd
+        EntitySet="CountryHolidays"
+        Name="CountryHoliday" />
+      <AssociationSetEnd
+        EntitySet="Countries"
+        Name="Country" />
+    </AssociationSet>
+    <AssociationSet
+      Association="CountryHoliday_Holiday"
+      Name="CountryHoliday_HolidaySet">
+      <AssociationSetEnd
+        EntitySet="CountryHolidays"
+        Name="CountryHoliday" />
+      <AssociationSetEnd
+        EntitySet="Holidays"
+        Name="Holiday" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType
+    Name="Project">
+    <EntityType.Attributes>
+      <Description
+        Value="Forecast exceptions reduce assigned time. Examples are PTO, Training, and Jury Duty." />
+    </EntityType.Attributes>
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="ProjectName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="40" />
+          <IncludeInUniqueIndex />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Client"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="40" />
+          <IncludeInUniqueIndex />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Phase"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="10" />
+          <SupportedValue
+            DisplayName="Start Up"
+            Value="StartUp" />
+          <SupportedValue
+            DisplayName="Implementation"
+            Value="Imp" />
+          <SupportedValue
+            DisplayName="Go Live"
+            Value="GoLive" />
+          <SupportedValue
+            DisplayName="Post Go Live"
+            Value="PostGL" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ProjectStatus"
+        PropertyType=":Double">
+        <EntityProperty.Attributes>
+          <Required />
+          <Description
+            Value="Project Status Stoplight" />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Green"
+            Value="0.1" />
+          <SupportedValue
+            DisplayName="Yellow"
+            Value="0.85" />
+          <SupportedValue
+            DisplayName="Red"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Inactive"
+            Value="-1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="StaffingStatus"
+        PropertyType=":Double">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Green"
+            Value="0.1" />
+          <SupportedValue
+            DisplayName="Yellow"
+            Value="0.85" />
+          <SupportedValue
+            DisplayName="Red"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Inactive"
+            Value="-1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FollowOn"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Notes"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="StaffingRequirement_Project"
+        FromEnd="Project"
+        Name="StaffingRequirements"
+        ToEnd="StaffingRequirement" />
+      <EntityProperty
+        Name="StartDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="BookedEndDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Inactive"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="EmployeeAssignment_Project"
+        FromEnd="Project"
+        Name="EmployeeAssignment"
+        ToEnd="EmployeeAssignment" />
+      <EntityProperty
+        Name="CurrentStaffing"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Computed />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="NeededStaffing"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Computed />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="Project_Employee"
+        FromEnd="Project"
+        Name="Director"
+        ToEnd="Employee" />
+      <NavigationProperty
+        Association="Project_Employee1"
+        FromEnd="Project"
+        Name="Manager"
+        ToEnd="Employee" />
+      <NavigationProperty
+        Association="TimeForecast_Project"
+        FromEnd="Project"
+        Name="TimeForecasts"
+        ToEnd="TimeForecast" />
+      <EntityProperty
+        Name="Chargeable"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Chargeable"
+            Value="True" />
+          <SupportedValue
+            DisplayName="Non-Chargeable"
+            Value="False" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ForecastEndDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ForecastException"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="East"
+            Value="East" />
+          <SupportedValue
+            DisplayName="Central"
+            Value="Central" />
+          <SupportedValue
+            DisplayName="West"
+            Value="West" />
+          <SupportedValue
+            DisplayName="Offshore"
+            Value="Offshore" />
+          <SupportedValue
+            DisplayName="Other"
+            Value="Other" />
+          <SupportedValue
+            Value="Unassigned" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Planned"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="TimeForecastExceptions_Project"
+        FromEnd="Project"
+        Name="TimeForecastExceptionsCollection"
+        ToEnd="TimeForecastExceptions" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="StaffingRequirement">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Level"
+        PropertyType=":Int16">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Consultant"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Senior Consultant"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Manager"
+            Value="3" />
+          <SupportedValue
+            DisplayName="Senior Manager"
+            Value="4" />
+          <SupportedValue
+            DisplayName="Director"
+            Value="5" />
+          <SupportedValue
+            DisplayName="Contractor"
+            Value="6" />
+          <SupportedValue
+            DisplayName="OAD - Experienced"
+            Value="7" />
+          <SupportedValue
+            DisplayName="OAD - Junior"
+            Value="8" />
+          <SupportedValue
+            DisplayName="Solution Center"
+            Value="9" />
+          <SupportedValue
+            DisplayName="Development"
+            Value="10" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Skill"
+        PropertyType=":Int16">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Technical"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Functional"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Both"
+            Value="3" />
+          <SupportedValue
+            DisplayName=".Net"
+            Value="4" />
+          <SupportedValue
+            DisplayName="Financial"
+            Value="5" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Industry"
+        PropertyType=":Int16">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="F/B"
+            Value="1" />
+          <SupportedValue
+            DisplayName="MCR"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Both"
+            Value="3" />
+          <SupportedValue
+            DisplayName="General"
+            Value="4" />
+          <SupportedValue
+            DisplayName="Optimization"
+            Value="5" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FTEs"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <DecimalConstraint
+            Precision="18"
+            Scale="2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Client"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="StaffingRequirement_Project"
+        FromEnd="StaffingRequirement"
+        Name="Project"
+        ToEnd="Project" />
+      <EntityProperty
+        Name="DateRequired"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EndDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ProjectName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="Employee">
+    <EntityType.Attributes>
+      <SummaryProperty
+        Property="Employee/Properties[FullName]" />
+    </EntityType.Attributes>
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <Description
+            Value="email address without the domain (without @junctionsolutions.com)" />
+          <DisplayName
+            Value="email name" />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="UserID"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="25" />
+          <IncludeInUniqueIndex />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="25" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Title"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="40" />
+          <SupportedValue
+            DisplayName="Consultant"
+            Value="Consultant" />
+          <SupportedValue
+            DisplayName="Senior Consultant"
+            Value="SeniorConsultant" />
+          <SupportedValue
+            DisplayName="Manager"
+            Value="Manager" />
+          <SupportedValue
+            DisplayName="Senior Manager"
+            Value="SeniorManager" />
+          <SupportedValue
+            DisplayName="Director"
+            Value="Director" />
+          <SupportedValue
+            DisplayName="Vice President"
+            Value="VP" />
+          <SupportedValue
+            DisplayName="Developer"
+            Value="Developer" />
+          <SupportedValue
+            DisplayName="Senior Developer"
+            Value="SeniorDeveloper" />
+          <SupportedValue
+            DisplayName="Other"
+            Value="Other" />
+          <SupportedValue
+            DisplayName="Admin Team"
+            Value="AdminTeam" />
+          <SupportedValue
+            DisplayName="Architect"
+            Value="Architect" />
+          <SupportedValue
+            DisplayName="Quality Analyst"
+            Value="QualityAnalyst" />
+          <SupportedValue
+            DisplayName="Admin Assistant"
+            Value="AdminAssistant" />
+          <SupportedValue
+            DisplayName="HR Generalist"
+            Value="HRGeneralist" />
+          <SupportedValue
+            DisplayName="Support Analyst"
+            Value="SupportAnalyst" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="EmployeeAssignment_Employee"
+        FromEnd="Employee"
+        Name="EmployeeAssignments"
+        ToEnd="EmployeeAssignment" />
+      <NavigationProperty
+        Association="Project_Employee"
+        FromEnd="Employee"
+        Name="Projects"
+        ToEnd="Project" />
+      <NavigationProperty
+        Association="Project_Employee1"
+        FromEnd="Employee"
+        Name="Project"
+        ToEnd="Project" />
+      <NavigationProperty
+        Association="TimeForecast_Employee"
+        FromEnd="Employee"
+        Name="TimeForecasts"
+        ToEnd="TimeForecast" />
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="Consulting"
+            Value="Consulting" />
+          <SupportedValue
+            DisplayName="Support"
+            Value="Support" />
+          <SupportedValue
+            DisplayName="Development"
+            Value="Development" />
+          <SupportedValue
+            DisplayName="BI"
+            Value="BI" />
+          <SupportedValue
+            DisplayName="Training"
+            Value="Training" />
+          <SupportedValue
+            DisplayName="Contractor"
+            Value="Contractor" />
+          <SupportedValue
+            DisplayName="Other"
+            Value="Other" />
+          <SupportedValue
+            DisplayName="Admin"
+            Value="Admin" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Office"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            Value="Atlanta" />
+          <SupportedValue
+            Value="St. Louis" />
+          <SupportedValue
+            Value="Denver" />
+          <SupportedValue
+            Value="Pleasanton" />
+          <SupportedValue
+            DisplayName="San Salvador"
+            Value="San Salvador" />
+          <SupportedValue
+            DisplayName="Shanghai"
+            Value="Shanghai" />
+          <SupportedValue
+            DisplayName="Other"
+            Value="Other" />
+          <SupportedValue
+            Value="Unassigned" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            Value="East" />
+          <SupportedValue
+            Value="Central" />
+          <SupportedValue
+            DisplayName="West"
+            Value="West" />
+          <SupportedValue
+            DisplayName="Offshore"
+            Value="Offshore" />
+          <SupportedValue
+            DisplayName="Other"
+            Value="Other" />
+          <SupportedValue
+            Value="Unassigned" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Supervisor"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <Description
+            Value="User ID of Supervisor" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="TimeForecastExceptions_Employee"
+        FromEnd="Employee"
+        Name="TimeForecastExceptionsCollection"
+        ToEnd="TimeForecastExceptions" />
+      <EntityProperty
+        Name="ExcludeFromAvailabilityReport"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+          <Required />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="ReviewHeader_Employee"
+        FromEnd="Employee"
+        Name="ReviewHeaders"
+        ToEnd="ReviewHeader" />
+      <NavigationProperty
+        Association="ReviewHeader_Employee1"
+        FromEnd="Employee"
+        Name="ReviewHeaders1"
+        ToEnd="ReviewHeader" />
+      <NavigationProperty
+        Association="Employee_Employee"
+        FromEnd="Employee1"
+        Name="DirectReport"
+        ToEnd="Employee2" />
+      <NavigationProperty
+        Association="Employee_Employee"
+        FromEnd="Employee2"
+        Name="Supervsr"
+        ToEnd="Employee1">
+        <NavigationProperty.Attributes>
+          <DisplayName
+            Value="Supervisor" />
+        </NavigationProperty.Attributes>
+      </NavigationProperty>
+      <NavigationProperty
+        Association="Signature_Employee"
+        FromEnd="Employee"
+        Name="Signatures"
+        ToEnd="Signature" />
+      <NavigationProperty
+        Association="Country_Employee"
+        FromEnd="Employee"
+        Name="Country"
+        ToEnd="Country" />
+      <EntityProperty
+        Name="FullName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="EmployeeAssignment">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <NavigationProperty
+        Association="EmployeeAssignment_Project"
+        FromEnd="EmployeeAssignment"
+        Name="Projects"
+        ToEnd="Project" />
+      <NavigationProperty
+        Association="EmployeeAssignment_Employee"
+        FromEnd="EmployeeAssignment"
+        Name="Employee"
+        ToEnd="Employee" />
+      <EntityProperty
+        Name="FullName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+          <DisplayName
+            Value="Name" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Level"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Percent"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <Range
+            Maximum="100"
+            Minimum="0" />
+          <DecimalConstraint
+            Precision="18"
+            Scale="0" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="StartDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EndDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Chargeable"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Chargeable"
+            Value="True" />
+          <SupportedValue
+            DisplayName="Non-Chargeable"
+            Value="False" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Client"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ProjBookedEnd"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Computed />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ProjForecastEnd"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Computed />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RolloffSheduled"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Director"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Manager"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="TimeForecast">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <NavigationProperty
+        Association="TimeForecast_Project"
+        FromEnd="TimeForecast"
+        Name="Project1"
+        ToEnd="Project">
+        <NavigationProperty.Attributes>
+          <Description
+            Value="Project Name" />
+          <DisplayName
+            Value="Project Name" />
+        </NavigationProperty.Attributes>
+      </NavigationProperty>
+      <EntityProperty
+        Name="StartDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EndDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Percent"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <Range
+            Maximum=""
+            Minimum="" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Chargeable"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Chargeable"
+            Value="True" />
+          <SupportedValue
+            DisplayName="Non Chargeable"
+            Value="False" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LastUpdate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="TimeForecast_Employee"
+        FromEnd="TimeForecast"
+        Name="Employee"
+        ToEnd="Employee" />
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <Permission
+    Name="ProjectAdmin">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Project Administration" />
+      <Description
+        Value="Provides the ability to mange projects" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="EmployeeAdmin">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Employee Administration" />
+      <Description
+        Value="Provides the ability to manage employees" />
+    </Permission.Attributes>
+  </Permission>
+  <Association
+    Name="TimeForecast_Employee">
+    <AssociationEnd
+      EntityType="TimeForecast"
+      Multiplicity="Many"
+      Name="TimeForecast" />
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="One"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Permission
+    Name="EmpAssignAdmin">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Employee Assignment Admin" />
+      <Description
+        Value="Provides the ability to manage employee assignments" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="StaffReqAdmin">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Staff Requirements Admin" />
+      <Description
+        Value="Provides the ability to manage staff requirements" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="TimeForecastUser">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Time Forecast User" />
+      <Description
+        Value="Provides the ability to manage time forecasts" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="MgmtReportAccess">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Management Report Access" />
+      <Description
+        Value="Can access management reports" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="ProjectAdminAll">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Project Admin All Projects" />
+      <Description
+        Value="Can view and manage all projects" />
+    </Permission.Attributes>
+  </Permission>
+  <EntityContainer
+    Name="ProjectStatus_RIA_ServiceData">
+    <SubmitOperation
+      Name="SaveChanges" />
+    <EntitySet
+      EntityType="UnassignedEmployee"
+      Name="UnassignedEmployees" />
+    <QueryOperation
+      Name="UnassignedEmployees_Single"
+      ReturnType="UnassignedEmployee">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="EmployeeID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="EmployeeID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="UnassignedEmployees" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="EmployeeID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'EmployeeID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="UnassignedEmployees_SingleOrDefault"
+      ReturnType="UnassignedEmployee">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="EmployeeID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="EmployeeID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="UnassignedEmployees" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="EmployeeID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'EmployeeID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      EntityType="StatusSummary"
+      Name="StatusSummaries" />
+    <QueryOperation
+      Name="StatusSummaries_Single"
+      ReturnType="StatusSummary">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ProjectID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ProjectID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="StatusSummaries" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ProjectID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ProjectID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="StatusSummaries_SingleOrDefault"
+      ReturnType="StatusSummary">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="ProjectID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="ProjectID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="StatusSummaries" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="ProjectID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'ProjectID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      EntityType="Forecast"
+      Name="Forecasts" />
+    <QueryOperation
+      Name="Forecasts_Single"
+      ReturnType="Forecast">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="RecID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="RecID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Forecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="RecID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'RecID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="Forecasts_SingleOrDefault"
+      ReturnType="Forecast">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="RecID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="RecID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Forecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="RecID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'RecID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="GetSpecificForecast"
+      ReturnType="Forecast*">
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree />
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="Forecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="EmployeeID"
+        ParameterType=":Int32?" />
+    </QueryOperation>
+    <EntitySet
+      EntityType="EmployeeAssignmentReport"
+      Name="EmployeeAssignmentReports" />
+    <QueryOperation
+      Name="EmployeeAssignmentReports_Single"
+      ReturnType="EmployeeAssignmentReport">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="RecId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="RecId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="EmployeeAssignmentReports" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="RecId"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'RecId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="EmployeeAssignmentReports_SingleOrDefault"
+      ReturnType="EmployeeAssignmentReport">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="RecId" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="RecId" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="EmployeeAssignmentReports" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="RecId"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'RecId' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      EntityType="MultiPeriodForecast"
+      Name="MultiPeriodForecasts" />
+    <QueryOperation
+      Name="MultiPeriodForecasts_Single"
+      ReturnType="MultiPeriodForecast">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="RecID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="RecID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="MultiPeriodForecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="RecID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'RecID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="MultiPeriodForecasts_SingleOrDefault"
+      ReturnType="MultiPeriodForecast">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="RecID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="RecID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="MultiPeriodForecasts" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="RecID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'RecID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <EntitySet
+      EntityType="AnnualReviewStatu"
+      Name="AnnualReviewStatus" />
+    <QueryOperation
+      Name="AnnualReviewStatus_Single"
+      ReturnType="AnnualReviewStatu">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="EmployeeID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="EmployeeID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="AnnualReviewStatus" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="EmployeeID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'EmployeeID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="AnnualReviewStatus_SingleOrDefault"
+      ReturnType="AnnualReviewStatu">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="EmployeeID" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="EmployeeID" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="AnnualReviewStatus" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="EmployeeID"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'EmployeeID' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <EntityType
+    Name="UnassignedEmployee">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="EmployeeID"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="UserID"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Title"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Country"
+        PropertyType=":String?" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="StatusSummary">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="ProjectID"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="ProjectName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="AssignedFTE"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="F1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RequiredFTE"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="F1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Client"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Phase"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="ProjectStatus"
+        PropertyType=":Double">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Green"
+            Value="0.1" />
+          <SupportedValue
+            DisplayName="Yellow"
+            Value="0.85" />
+          <SupportedValue
+            DisplayName="Red"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="StaffingStatus"
+        PropertyType=":Double">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Green"
+            Value="0.1" />
+          <SupportedValue
+            DisplayName="Yellow"
+            Value="0.85" />
+          <SupportedValue
+            DisplayName="Red"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="StartDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="BookedEndDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ForecastEndDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Inactive"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Chargeable"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ForecastException"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FollowOn"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Notes"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Director"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Manager"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Planned"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="Holiday">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="HolidayDate"
+        PropertyType=":Date?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="HolidayName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="CountryHoliday_Holiday"
+        FromEnd="Holiday"
+        Name="Countries"
+        ToEnd="CountryHoliday" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="Forecast">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <EntityProperty
+        Name="TimePeriod"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="PeriodEnd"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="WeekDays"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="WorkHours"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="HolidayHours"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ChargeableHours"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="NonChargeableHours"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ExceptionHours"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Utilization"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Availability"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="UserId"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String?" />
+      <KeyProperty
+        Name="RecID"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="EmployeeID"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Title"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String?" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="Announcements">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="AnnouncementText"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Picture"
+        PropertyType="Microsoft.LightSwitch.Extensions:Image?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="MoreInfoLink"
+        PropertyType="Microsoft.LightSwitch.Extensions:WebAddress?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <Permission
+    Name="TimeForecastAdmin">
+    <Permission.Attributes>
+      <DisplayName
+        Value="TimeForecastAdmin" />
+      <Description
+        Value="Can edit all time forecasts and calendars" />
+    </Permission.Attributes>
+  </Permission>
+  <EntityType
+    Name="EmployeeAssignmentReport">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="RecId"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="ProjectID"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EmployeeID"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="StartDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EndDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Percent"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Chargeable"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Exception"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Client"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="BookedEndDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ForecastEndDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ProjectName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="ClientName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Rolloff"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Title"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String?" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="TimeForecastExceptions">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="StartDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EndDate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Percent"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="LastUpdate"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="TimeForecastExceptions_Project"
+        FromEnd="TimeForecastExceptions"
+        Name="Project"
+        ToEnd="Project" />
+      <NavigationProperty
+        Association="TimeForecastExceptions_Employee"
+        FromEnd="TimeForecastExceptions"
+        Name="Employee"
+        ToEnd="Employee" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="TimeForecastExceptions_Project">
+    <AssociationEnd
+      EntityType="TimeForecastExceptions"
+      Multiplicity="Many"
+      Name="TimeForecastExceptions" />
+    <AssociationEnd
+      EntityType="Project"
+      Multiplicity="One"
+      Name="Project">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="TimeForecastExceptions_Employee">
+    <AssociationEnd
+      EntityType="TimeForecastExceptions"
+      Multiplicity="Many"
+      Name="TimeForecastExceptions" />
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="One"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <EntityType
+    Name="MultiPeriodForecast">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="RecID"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="EmployeeID"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TimePeriod"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="PeriodEnd"
+        PropertyType=":DateTime">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="WeekDays"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="WorkHours"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="HolidayHours"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ChargeableHours"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="NonChargeableHours"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ExceptionHours"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Utilization"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Availability"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Utilization1"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Availability1"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="UserId"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Title"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Utilization2"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Availability2"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Utilization3"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Availability3"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Utilization4"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Availability4"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Utilization5"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Availability5"
+        PropertyType=":Decimal">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="f1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String?" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="EvaluationCriteria">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Title"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="Consultant"
+            Value="Consultant" />
+          <SupportedValue
+            DisplayName="Senior Consultant"
+            Value="SeniorConsultant" />
+          <SupportedValue
+            DisplayName="Manager"
+            Value="Manager" />
+          <SupportedValue
+            DisplayName="Senior Manager"
+            Value="SeniorManager" />
+          <SupportedValue
+            DisplayName="Director"
+            Value="Director" />
+          <SupportedValue
+            DisplayName="Vice President"
+            Value="VP" />
+          <SupportedValue
+            DisplayName="Admin Team"
+            Value="AdminTeam" />
+          <SupportedValue
+            DisplayName="Architect"
+            Value="Architect" />
+          <SupportedValue
+            DisplayName="Quality Analyst"
+            Value="QualityAnalyst" />
+          <SupportedValue
+            DisplayName="Developer"
+            Value="Developer" />
+          <SupportedValue
+            DisplayName="Senior Developer"
+            Value="SeniorDeveloper" />
+          <SupportedValue
+            DisplayName="Admin Assistant"
+            Value="AdminAssistant" />
+          <SupportedValue
+            DisplayName="HR Generalist"
+            Value="HRGeneralist" />
+          <SupportedValue
+            DisplayName="Support Analyst"
+            Value="SupportAnalyst" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Category"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="Communications"
+            Value="Communications" />
+          <SupportedValue
+            DisplayName="Functional"
+            Value="Functional" />
+          <SupportedValue
+            DisplayName="Technical"
+            Value="Technical" />
+          <SupportedValue
+            DisplayName="Consulting"
+            Value="Consulting" />
+          <SupportedValue
+            Value="Management" />
+          <SupportedValue
+            DisplayName="Quality"
+            Value="Quality" />
+          <SupportedValue
+            DisplayName="Practice Development"
+            Value="PracticeDevelopment" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Criteria"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="Consulting"
+            Value="Consulting" />
+          <SupportedValue
+            DisplayName="Support"
+            Value="Support" />
+          <SupportedValue
+            DisplayName="Development"
+            Value="Development" />
+          <SupportedValue
+            DisplayName="BI"
+            Value="BI" />
+          <SupportedValue
+            DisplayName="Training"
+            Value="Training" />
+          <SupportedValue
+            DisplayName="El Salvador"
+            Value="El Salvador" />
+          <SupportedValue
+            DisplayName="China"
+            Value="China" />
+          <SupportedValue
+            DisplayName="Contractor"
+            Value="Contractor" />
+          <SupportedValue
+            DisplayName="Other"
+            Value="Other" />
+          <SupportedValue
+            DisplayName="Admin"
+            Value="Admin" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="ReviewHeader">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="ReviewHeader_Employee"
+        FromEnd="ReviewHeader"
+        Name="Employee"
+        ToEnd="Employee" />
+      <NavigationProperty
+        Association="ReviewHeader_Employee1"
+        FromEnd="ReviewHeader"
+        Name="Reviewer"
+        ToEnd="Employee" />
+      <EntityProperty
+        Name="ReviewDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TimePeriodCoveredStart"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <DisplayName
+            Value="Start Date" />
+          <Description
+            Value="Starting date of the review time period." />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TimePeriodCoveredEnd"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <Description
+            Value="Ending date of the review time period." />
+          <DisplayName
+            Value="End Date" />
+          <StringValueFormat
+            Value="d" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="ReviewCritieria_ReviewHeader"
+        FromEnd="ReviewHeader"
+        Name="ReviewCritieria"
+        ToEnd="ReviewCritieria" />
+      <EntityProperty
+        Name="ReviewType"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="Annual"
+            Value="Annual" />
+          <SupportedValue
+            DisplayName="Project"
+            Value="Project" />
+          <SupportedValue
+            DisplayName="Self"
+            Value="Self" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EmployeeName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Supervisor"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <Description
+            Value="Supervisor at time of review creation." />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ProjectsCovered"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Role"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ReviewerName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Promote"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="No"
+            Value="False" />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="True" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Strengths"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="4000" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="DevelopmentNeeds"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="4000" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="SummaryRating"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Unsatisfactory"
+            Value="0" />
+          <SupportedValue
+            DisplayName="Needs Improvement"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Standard"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Above Average"
+            Value="3" />
+          <SupportedValue
+            DisplayName="Exceptional"
+            Value="4" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="MajorAssignments"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="1000" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="Signature_ReviewHeader"
+        FromEnd="ReviewHeader"
+        Name="Signatures"
+        ToEnd="Signature" />
+      <EntityProperty
+        Name="EmployeeHasSigned"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="TrainingPlan_ReviewHeader"
+        FromEnd="ReviewHeader"
+        Name="TrainingPlans"
+        ToEnd="TrainingPlan" />
+      <EntityProperty
+        Name="SignedStatus"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="Not Signed"
+            Value="Not Signed" />
+          <SupportedValue
+            DisplayName="Signed by Reviewer"
+            Value="Reviewer" />
+          <SupportedValue
+            DisplayName="Fully Signed"
+            Value="Fully" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Published"
+        PropertyType=":Boolean">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Draft"
+            Value="False" />
+          <SupportedValue
+            DisplayName="Published"
+            Value="True" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="ReviewHeader_Employee">
+    <AssociationEnd
+      EntityType="ReviewHeader"
+      Multiplicity="Many"
+      Name="ReviewHeader" />
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="One"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="ReviewHeader_Employee1">
+    <AssociationEnd
+      EntityType="ReviewHeader"
+      Multiplicity="Many"
+      Name="ReviewHeader" />
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="One"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <EntityType
+    Name="ReviewCritieria">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="ReviewCritieria_ReviewHeader"
+        FromEnd="ReviewCritieria"
+        Name="ReviewHeader"
+        ToEnd="ReviewHeader" />
+      <EntityProperty
+        Name="Rating"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Unsatisfactory"
+            Value="0" />
+          <SupportedValue
+            DisplayName="Needs Improvement"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Standard"
+            Value="2" />
+          <SupportedValue
+            DisplayName="Above Average"
+            Value="3" />
+          <SupportedValue
+            DisplayName="Exceptional"
+            Value="4" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Category"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Criteria"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Comments"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="ReviewCritieria_ReviewHeader">
+    <AssociationEnd
+      EntityType="ReviewCritieria"
+      Multiplicity="Many"
+      Name="ReviewCritieria" />
+    <AssociationEnd
+      EntityType="ReviewHeader"
+      Multiplicity="One"
+      Name="ReviewHeader">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Employee_Employee">
+    <AssociationEnd
+      EntityType="Employee"
+      Name="Employee1">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="Many"
+      Name="Employee2" />
+  </Association>
+  <EntityType
+    Name="Signature">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="Signature_Employee"
+        FromEnd="Signature"
+        Name="Employee"
+        ToEnd="Employee" />
+      <NavigationProperty
+        Association="Signature_ReviewHeader"
+        FromEnd="Signature"
+        Name="ReviewHeader"
+        ToEnd="ReviewHeader" />
+      <EntityProperty
+        Name="SigningDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EmployeeName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ReviewerName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ProjectsCovered"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="Signature_Employee">
+    <AssociationEnd
+      EntityType="Signature"
+      Multiplicity="Many"
+      Name="Signature" />
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="One"
+      Name="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Signature_ReviewHeader">
+    <AssociationEnd
+      EntityType="Signature"
+      Multiplicity="Many"
+      Name="Signature" />
+    <AssociationEnd
+      EntityType="ReviewHeader"
+      Multiplicity="One"
+      Name="ReviewHeader">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <EntityType
+    Name="TrainingCourses">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CourseName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <IncludeInUniqueIndex />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Days"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Cost"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+          <DecimalConstraint
+            Precision="18"
+            Scale="2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CourseAbstract"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="TrainingPlan_TrainingCourses"
+        FromEnd="TrainingCourses"
+        Name="TrainingPlans"
+        ToEnd="TrainingPlan" />
+      <EntityProperty
+        Name="Provider"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <SupportedValue
+            DisplayName="Junction Solutions"
+            Value="Junction Solutions" />
+          <SupportedValue
+            DisplayName="Microsoft"
+            Value="Microsoft" />
+          <SupportedValue
+            DisplayName="APICS"
+            Value="APICS" />
+          <SupportedValue
+            DisplayName="PMI"
+            Value="PMI" />
+          <SupportedValue
+            DisplayName="Other"
+            Value="Other" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Link"
+        PropertyType="Microsoft.LightSwitch.Extensions:WebAddress?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="TrainingPlan">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="TrainingPlan_ReviewHeader"
+        FromEnd="TrainingPlan"
+        Name="ReviewHeader"
+        ToEnd="ReviewHeader" />
+      <NavigationProperty
+        Association="TrainingPlan_TrainingCourses"
+        FromEnd="TrainingPlan"
+        Name="TrainingCourses"
+        ToEnd="TrainingCourses" />
+      <EntityProperty
+        Name="TargetCompletionDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Comments"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CourseName"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CourseAbstract"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CourseDays"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CourseCost"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="CourseProvider"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Computed />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="TrainingPlan_ReviewHeader">
+    <AssociationEnd
+      EntityType="TrainingPlan"
+      Multiplicity="Many"
+      Name="TrainingPlan" />
+    <AssociationEnd
+      EntityType="ReviewHeader"
+      Multiplicity="One"
+      Name="ReviewHeader">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="TrainingPlan_TrainingCourses">
+    <AssociationEnd
+      EntityType="TrainingPlan"
+      Multiplicity="Many"
+      Name="TrainingPlan" />
+    <AssociationEnd
+      EntityType="TrainingCourses"
+      Multiplicity="One"
+      Name="TrainingCourses">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Permission
+    Name="ReviewAdmin">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Review Administration" />
+      <Description
+        Value="Can access all reviews" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="ReviewSetupAdmin">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Review Setup Administration" />
+      <Description
+        Value="Can access all review setup information" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="SignatureOverride">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Signature Override" />
+      <Description
+        Value="Can override and reset signatures" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="CreateReviews">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Create Reviews" />
+      <Description
+        Value="Can create new reviews" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="AccessReviewTab">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Access Any Review Info" />
+      <Description
+        Value="Can access any review info" />
+    </Permission.Attributes>
+  </Permission>
+  <EntityType
+    Name="AnnualReviewStatu">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="EmployeeID"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="FirstName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="LastName"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="UserID"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Department"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Title"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Region"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Supervisor"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="ReviewStatus"
+        PropertyType=":String?" />
+      <EntityProperty
+        Name="Country"
+        PropertyType=":String?" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityType
+    Name="Country">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Name"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Zone"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+          <Required />
+          <SupportedValue
+            DisplayName="North America"
+            Value="NorthAmerica" />
+          <SupportedValue
+            DisplayName="Latin America"
+            Value="LatinAmerica" />
+          <SupportedValue
+            DisplayName="Asia"
+            Value="Asia" />
+          <SupportedValue
+            DisplayName="Europe"
+            Value="Europe" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Code"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="5" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="Country_Employee"
+        FromEnd="Country"
+        Name="Employees"
+        ToEnd="Employee" />
+      <NavigationProperty
+        Association="CountryHoliday_Country"
+        FromEnd="Country"
+        Name="Holidays"
+        ToEnd="CountryHoliday" />
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="Country_Employee">
+    <AssociationEnd
+      EntityType="Country"
+      Multiplicity="One"
+      Name="Country">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      EntityType="Employee"
+      Multiplicity="Many"
+      Name="Employee" />
+  </Association>
+  <EntityType
+    Name="CountryHoliday">
+    <EntityType.Attributes>
+      <DisplayName
+        Value="Holiday" />
+    </EntityType.Attributes>
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <UseForConcurrency />
+          <Generated />
+          <Hidden />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Association="CountryHoliday_Holiday"
+        FromEnd="CountryHoliday"
+        Name="Holiday"
+        ToEnd="Holiday" />
+      <NavigationProperty
+        Association="CountryHoliday_Country"
+        FromEnd="CountryHoliday"
+        Name="Country"
+        ToEnd="Country" />
+      <EntityProperty
+        Name="StartDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EndDate"
+        PropertyType=":Date?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <Association
+    Name="CountryHoliday_Country">
+    <AssociationEnd
+      EntityType="CountryHoliday"
+      Multiplicity="Many"
+      Name="CountryHoliday" />
+    <AssociationEnd
+      EntityType="Country"
+      Multiplicity="One"
+      Name="Country">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="CountryHoliday_Holiday">
+    <AssociationEnd
+      EntityType="CountryHoliday"
+      Multiplicity="Many"
+      Name="CountryHoliday" />
+    <AssociationEnd
+      EntityType="Holiday"
+      Multiplicity="One"
+      Name="Holiday">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+</ModelFragment>

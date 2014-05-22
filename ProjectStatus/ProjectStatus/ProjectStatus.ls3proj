@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project MSBuildVersion="4.0" ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>d7b27888-87e5-4bbf-af13-fa8c385d210f</ProjectGuid>
+    <OutputType>WinEXE</OutputType>
+    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <RootNamespace>ProjectStatus</RootNamespace>
+    <AssemblyName>Microsoft.LightSwitch.Server.Host</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <LightSwitchVersion>v3.0</LightSwitchVersion>
+    <LightSwitchProjectVersion>v3.1</LightSwitchProjectVersion>
+    <Name>ProjectStatus</Name>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <BaseIntermediateOutputPath>bin</BaseIntermediateOutputPath>
+    <ApplicationClientType>Desktop</ApplicationClientType>
+    <ApplicationServerType>LocalHost</ApplicationServerType>
+    <RequireSecureConnection>False</RequireSecureConnection>
+    <AuthenticationType>Forms</AuthenticationType>
+    <ApplicationName>Project Management Portal</ApplicationName>
+    <AssemblyVersion>1.1.1019.0</AssemblyVersion>
+    <ServiceDefinitionFile>ServiceDefinition.csdef</ServiceDefinitionFile>
+    <ServiceConfigurationFile>ServiceConfiguration.cscfg</ServiceConfigurationFile>
+    <SqlExpressInstanceName>(LocalDB)\v11.0</SqlExpressInstanceName>
+    <AdministratorFullName>admin</AdministratorFullName>
+    <AdministratorUserName>admin</AdministratorUserName>
+    <AllowUntrustedCertificate>False</AllowUntrustedCertificate>
+    <AddAdministrator>False</AddAdministrator>
+    <BootstrapperComponentsUrl />
+    <DefaultInstallLocation>ProjectStatus</DefaultInstallLocation>
+    <DeploySchema>True</DeploySchema>
+    <PublishNewDatabase>False</PublishNewDatabase>
+    <PublishUrl>waws-prod-blu-001.publish.azurewebsites.windows.net:443</PublishUrl>
+    <PublishSite>jstftest</PublishSite>
+    <RemotePublish>True</RemotePublish>
+    <UseLightSwitchWebDeploymentProvider>True</UseLightSwitchWebDeploymentProvider>
+    <AzureSubscriptionId>00000000-0000-0000-0000-000000000000</AzureSubscriptionId>
+    <AzureManagementThumbprint />
+    <AzureHostedService>
+    </AzureHostedService>
+    <AzureHostedServiceLabel>Production</AzureHostedServiceLabel>
+    <AzureStorageService />
+    <SslCertificateThumbprint />
+    <AllowAllWindowsUsers>false</AllowAllWindowsUsers>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <DeployDatabase>False</DeployDatabase>
+    <AzureAllowUpgrade>True</AzureAllowUpgrade>
+    <AzureAppendTimestampToDeploymentLabel>True</AzureAppendTimestampToDeploymentLabel>
+    <AzureDeploymentLabel>ProjectStatus</AzureDeploymentLabel>
+    <AzureWebSite>jstftest</AzureWebSite>
+    <AzureWebSpace>eastuswebspace</AzureWebSpace>
+    <LightSwitchPublishVersion>v2.0</LightSwitchPublishVersion>
+    <PublishServiceOnly>False</PublishServiceOnly>
+    <AzureCredentials>Junction Time Forecast</AzureCredentials>
+    <AzureServiceType>WebSite</AzureServiceType>
+    <AzureServiceManagementEndpoint>https://management.core.windows.net/</AzureServiceManagementEndpoint>
+    <BootstrapperComponentsLocation>HomeSite</BootstrapperComponentsLocation>
+    <PublishLocation>Publish</PublishLocation>
+    <DefaultDatabaseName>ProjectStatus</DefaultDatabaseName>
+    <LightSwitchProjectTypeV3>LightSwitch</LightSwitchProjectTypeV3>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <SharePointServerToServerCertificatePath />
+    <SharePointServerToServerCertificateIssuerId />
+    <DebugSharePointAuthenticationType>AccessControlService</DebugSharePointAuthenticationType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseDesignTimeFeatures>true</UseDesignTimeFeatures>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseDesignTimeFeatures>false</UseDesignTimeFeatures>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration">
+      <HintPath>System.configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Microsoft.LightSwitch.ManifestService">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Microsoft.LightSwitch.ManifestService.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.cscfg" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(BuildingInsideVisualStudio)' != 'true'">
+    <ProjectReference Include="Client\Client.csproj">
+      <Name>Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="Server\Server.csproj">
+      <Name>Server</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(BuildingInsideVisualStudio)' == 'true'">
+    <SubProject Include="Client\Client.csproj">
+      <TypeGuid>{01074E5A-9000-460e-AB81-3A9263818D40}</TypeGuid>
+      <BaseTypeGuid>{FAE04EC0-301F-11d3-BF4B-00C04F79EFBC}</BaseTypeGuid>
+      <Name>Client</Name>
+      <InstanceGuid>{6b37bee8-d94f-4999-b6c6-5e8d8638d7e1}</InstanceGuid>
+    </SubProject>
+    <SubProject Include="Server\Server.csproj">
+      <TypeGuid>{01074E5A-9000-460e-AB81-3A9263818D40}</TypeGuid>
+      <BaseTypeGuid>{FAE04EC0-301F-11d3-BF4B-00C04F79EFBC}</BaseTypeGuid>
+      <Name>Server</Name>
+      <InstanceGuid>{e6de9fcc-c6cc-4461-a875-0e44dd1a2bba}</InstanceGuid>
+    </SubProject>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <_BuildFile Include="$(LightSwitchSDKPath)\Server\Microsoft.LightSwitch.SecurityData.svc">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>
+      </PublishType>
+    </_BuildFile>
+    <_BuildFile Include="$(LightSwitchSDKPath)\Design\vslshost.exe">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>EntryPoint</PublishType>
+    </_BuildFile>
+    <_BuildFile Include="$(LightSwitchSDKPath)\Design\vslshost.exe.config">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>Desktop</PublishType>
+    </_BuildFile>
+    <_BuildFile Include="$(LightSwitchSDKPath)\Design\vslshost.exe.manifest">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>Exclude</PublishType>
+    </_BuildFile>
+    <_BuildFile Include="$(LightSwitchSDKPath)\Server\ClientAccessPolicy.xml">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>
+      </PublishType>
+    </_BuildFile>
+    <_BuildFile Include="$(LightSwitchSDKPath)\Server\Microsoft.LightSwitch.Design.svc">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>Exclude</PublishType>
+    </_BuildFile>
+    <_BuildFile Include="Server\web.config">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>
+      </PublishType>
+    </_BuildFile>
+  </ItemGroup>
+  <ItemGroup>
+    <LightSwitchExtension Include="ExcelImporter">
+      <Client>EXCELIMPORTER.CLIENT;EXCELIMPORTER.COMMON;EXCELIMPORTER.CLIENT.DESIGN</Client>
+      <Server>EXCELIMPORTER.COMMON;EXCELIMPORTER.SERVER</Server>
+    </LightSwitchExtension>
+    <LightSwitchExtension Include="FilterControl">
+      <Client>FILTERCONTROL.CLIENT;FILTERCONTROL.COMMON;FILTERCONTROL.CLIENT.DESIGN</Client>
+      <Server>FILTERCONTROL.COMMON;FILTERCONTROL.SERVER</Server>
+    </LightSwitchExtension>
+    <LightSwitchExtension Include="Microsoft.LightSwitch.Cosmopolitan">
+      <Client>MICROSOFT.LIGHTSWITCH.COSMOPOLITAN.CLIENT</Client>
+    </LightSwitchExtension>
+    <LightSwitchExtension Include="Microsoft.LightSwitch.Extensions">
+      <Client>MICROSOFT.LIGHTSWITCH.EXTENSIONS.CLIENT;MICROSOFT.LIGHTSWITCH.EXTENSIONS.DESIGN.CLIENT</Client>
+      <Server>MICROSOFT.LIGHTSWITCH.EXTENSIONS.SERVER</Server>
+    </LightSwitchExtension>
+    <LightSwitchExtension Include="OfficeIntegration">
+      <Client>OFFICEINTEGRATION.CLIENT;OFFICEINTEGRATION.COMMON;OFFICEINTEGRATION.CLIENT.DESIGN</Client>
+      <Server>OFFICEINTEGRATION.SERVER;OFFICEINTEGRATION.COMMON</Server>
+    </LightSwitchExtension>
+    <LightSwitchExtension Include="PixataCustomControls">
+      <Client>PIXATACUSTOMCONTROLS.CLIENT;PIXATACUSTOMCONTROLS.COMMON;PIXATACUSTOMCONTROLS.CLIENT.DESIGN</Client>
+      <Server>PIXATACUSTOMCONTROLS.COMMON;PIXATACUSTOMCONTROLS.SERVER</Server>
+    </LightSwitchExtension>
+  </ItemGroup>
+  <ItemGroup Condition="'$(AuthenticationType)' == 'Forms'">
+    <_BuildFile Include="Server\LogIn.aspx">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>
+      </PublishType>
+    </_BuildFile>
+    <_BuildFile Include="Server\LogOut.aspx">
+      <SubFolder>
+      </SubFolder>
+      <PublishType>
+      </PublishType>
+    </_BuildFile>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishParameter Include="ProjectStatus_RIA_Service.ProjectStatus_RIA_Service">
+      <Value>"MultipleActiveResultSets=True;"</Value>
+    </PublishParameter>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Install>True</Install>
+      <Name>Microsoft .NET Framework 4 (x86 and x64)</Name>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,KB2468871">
+      <Install>True</Install>
+      <Name>Microsoft .NET Framework 4 (x86 and x64) and Update for .NET Framework 4 (KB2468871)</Name>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Install>True</Install>
+      <Name>Microsoft .NET Framework 4.5 (x86 and x64)</Name>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Install>True</Install>
+      <Name>Windows Installer 4.5</Name>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\LightSwitch\$(LightSwitchVersion)\Microsoft.LightSwitch.targets" />
+</Project>
