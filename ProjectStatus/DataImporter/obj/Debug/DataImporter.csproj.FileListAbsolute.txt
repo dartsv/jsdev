@@ -1,8 +1,0 @@
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\bin\Debug\DataImporter.exe.config
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\bin\Debug\DataImporter.exe
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\bin\Debug\DataImporter.pdb
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\bin\Debug\CommonUtilities.dll
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\bin\Debug\CommonUtilities.pdb
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\obj\Debug\DataImporter.csprojResolveAssemblyReference.cache
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\obj\Debug\DataImporter.exe
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\DataImporter\obj\Debug\DataImporter.pdb

@@ -1,5 +1,0 @@
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\bin\Debug\CommonUtilities.dll
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\bin\Debug\CommonUtilities.pdb
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\obj\Debug\CommonUtilities.csprojResolveAssemblyReference.cache
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\obj\Debug\CommonUtilities.dll
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\CommonUtilities\obj\Debug\CommonUtilities.pdb

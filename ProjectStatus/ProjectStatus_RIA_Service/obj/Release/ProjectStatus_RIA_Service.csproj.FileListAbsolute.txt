@@ -1,7 +1,0 @@
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Release\ProjectStatus_RIA_Service.dll
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Release\ProjectStatus_RIA_Service.pdb
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Release\CommonUtilities.dll
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\bin\Release\CommonUtilities.pdb
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\obj\Release\ProjectStatus_RIA_Service.csprojResolveAssemblyReference.cache
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\obj\Release\ProjectStatus_RIA_Service.dll
-D:\JS\Project Management Portal\VisualStudioProject\ProjectStatus\ProjectStatus_RIA_Service\obj\Release\ProjectStatus_RIA_Service.pdb
